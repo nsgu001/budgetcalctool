@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Browse all free personal finance calculators: budget, savings, debt, emergency fund, retirement, and more. No data leaves your browser.">
+<title>All Tools | BudgetCalcTool.org</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css">
+<script src="../ads-loader.js" defer></script>
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "All Calculators",
+  "description": "Free personal finance calculators collection.",
+  "url": "https://budgetcalctool.org/tools/index.html"
+}</script>
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://budgetcalctool.org/"},
+    {"@type": "ListItem", "position": 2, "name": "Tools", "item": "https://budgetcalctool.org/tools/index.html"}
+  ]
+}</script>
+<meta property="og:title" content="All Tools | BudgetCalcTool.org">
+<meta property="og:description" content="Browse all free personal finance calculators. No data leaves your browser.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://budgetcalctool.org/tools/index.html">
+<meta property="og:image" content="https://budgetcalctool.org/favicon.ico">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://budgetcalctool.org/tools/index.html">
+</head>
+<body>
+<header class="bct-header">
+  <nav class="bct-nav">
+    <a href="../index.html" class="bct-logo">BudgetCalcTool</a>
+    <button class="bct-mobile-menu-btn" onclick="bctToggleMenu()" aria-label="Menu">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+    <ul class="bct-nav-links" id="mainNav">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="./index.html">Tools</a></li>
+      <li><a href="../blog/index.html">Blog</a></li>
+      <li><a href="../about.html">About</a></li>
+      <li><a href="../contact.html">Contact</a></li>
+      <li><a href="../faq.html">FAQ</a></li>
+    </ul>
+  </nav>
+</header>
+
+<div class="bct-breadcrumb">
+  <a href="../index.html">Home</a> <span>/</span> Tools
+</div>
+
+<section class="bct-tools-hero">
+  <h1>Tool Library</h1>
+  <p>Every calculator you need to take control of your money. Free, private, and built by a real financial counselor.</p>
+</section>
+
+<div class="bct-container"><div class="bct-ad-slot has-content" data-ad-slot="tool_top" data-ad="tool_top"></div></div>
+
+<div class="bct-tools-search">
+  <input type="text" id="toolSearch" placeholder="Search calculators..." oninput="applyFilter()">
+</div>
+
+<div class="bct-container">
+  <div class="bct-tools-categories">
+    <span class="bct-tools-cat active" onclick="filterCat('all')">All</span>
+    <span class="bct-tools-cat" onclick="filterCat('budget')">Budgeting</span>
+    <span class="bct-tools-cat" onclick="filterCat('savings')">Savings</span>
+    <span class="bct-tools-cat" onclick="filterCat('debt')">Debt</span>
+    <span class="bct-tools-cat" onclick="filterCat('planning')">Planning</span>
+  </div>
+</div>
+
+<div class="bct-tools-dir" id="toolsList">
+  <div class="bct-tools-dir-item" data-cat="budget">
+    <div class="bct-tools-dir-icon">📊</div>
+    <div class="bct-tools-dir-info">
+      <h3>Monthly Budget Calculator</h3>
+      <p>Build a zero-based budget that accounts for every dollar coming in and going out. Track income, fixed expenses, variable spending, and see what's left.</p>
+      <div class="bct-tools-dir-tags"><span class="bct-tools-dir-tag">Budgeting</span><span class="bct-tools-dir-tag">Zero-Based</span></div>
+    </div>
+    <a href="./monthly-budget-calculator.html" class="bct-btn bct-btn-primary bct-tools-dir-btn">Open Tool</a>
+  </div>
+  <div class="bct-tools-dir-item" data-cat="savings">
+    <div class="bct-tools-dir-icon">🎯</div>
+    <div class="bct-tools-dir-info">
+      <h3>Savings Goal Calculator</h3>
+      <p>Figure out exactly how much to save each month to hit your target on time. Adjust for interest rates and see your progress timeline.</p>
+      <div class="bct-tools-dir-tags"><span class="bct-tools-dir-tag">Savings</span><span class="bct-tools-dir-tag">Goals</span></div>
+    </div>
+    <a href="./savings-goal-calculator.html" class="bct-btn bct-btn-primary bct-tools-dir-btn">Open Tool</a>
+  </div>
+  <div class="bct-tools-dir-item" data-cat="debt">
+    <div class="bct-tools-dir-icon">💳</div>
+    <div class="bct-tools-dir-info">
+      <h3>Debt Payoff Calculator</h3>
+      <p>Compare snowball vs avalanche methods side by side. See your debt-free date, total interest paid, and monthly payment schedule.</p>
+      <div class="bct-tools-dir-tags"><span class="bct-tools-dir-tag">Debt</span><span class="bct-tools-dir-tag">Payoff</span></div>
+    </div>
+    <a href="./debt-payoff-calculator.html" class="bct-btn bct-btn-primary bct-tools-dir-btn">Open Tool</a>
+  </div>
+  <div class="bct-tools-dir-item" data-cat="budget">
+    <div class="bct-tools-dir-icon">⚖️</div>
+    <div class="bct-tools-dir-info">
+      <h3>50/30/20 Calculator</h3>
+      <p>Split your income into needs, wants, and savings with this classic framework. See if your current spending aligns with the rule.</p>
+      <div class="bct-tools-dir-tags"><span class="bct-tools-dir-tag">Budgeting</span><span class="bct-tools-dir-tag">Framework</span></div>
+    </div>
+    <a href="./50-30-20-calculator.html" class="bct-btn bct-btn-primary bct-tools-dir-btn">Open Tool</a>
+  </div>
+  <div class="bct-tools-dir-item" data-cat="savings">
+    <div class="bct-tools-dir-icon">🛡️</div>
+    <div class="bct-tools-dir-info">
+      <h3>Emergency Fund Calculator</h3>
+      <p>Calculate how many months of expenses you should stash away based on your job stability, family size, and risk factors.</p>
+      <div class="bct-tools-dir-tags"><span class="bct-tools-dir-tag">Savings</span><span class="bct-tools-dir-tag">Emergency</span></div>
+    </div>
+    <a href="./emergency-fund-calculator.html" class="bct-btn bct-btn-primary bct-tools-dir-btn">Open Tool</a>
+  </div>
+  <div class="bct-tools-dir-item" data-cat="budget">
+    <div class="bct-tools-dir-icon">🧾</div>
+    <div class="bct-tools-dir-info">
+      <h3>Expense Splitter</h3>
+      <p>Split shared bills fairly between roommates, couples, or travel groups. Handles uneven contributions and shared vs personal items.</p>
+      <div class="bct-tools-dir-tags"><span class="bct-tools-dir-tag">Budgeting</span><span class="bct-tools-dir-tag">Sharing</span></div>
+    </div>
+    <a href="./expense-splitter.html" class="bct-btn bct-btn-primary bct-tools-dir-btn">Open Tool</a>
+  </div>
+  <div class="bct-tools-dir-item" data-cat="planning">
+    <div class="bct-tools-dir-icon">🏖️</div>
+    <div class="bct-tools-dir-info">
+      <h3>Retirement Savings Calculator</h3>
+      <p>Project your nest egg and see if you're on track for the retirement you want. Factor in employer matches and inflation.</p>
+      <div class="bct-tools-dir-tags"><span class="bct-tools-dir-tag">Planning</span><span class="bct-tools-dir-tag">Retirement</span></div>
+    </div>
+    <a href="./retirement-savings-calculator.html" class="bct-btn bct-btn-primary bct-tools-dir-btn">Open Tool</a>
+  </div>
+</div>
+
+<div class="bct-container"><div class="bct-ad-slot has-content" data-ad-slot="tool_middle" data-ad="tool_middle"></div></div>
+
+<section class="bct-container bct-section">
+  <h2 class="bct-section-title">Related Articles</h2>
+  <p class="bct-section-sub">Deep dives to help you get the most from these tools.</p>
+  <!-- TOOLS_ARTICLES_START -->
+
+
+
+
+
+
+
+  <div class="bct-articles-tools-row">
+    <a href="../blog/why-youre-still-paying-off-last-years-holidays-and-how-to.html">
+      <img src="../images/blog/why-youre-still-paying-off-last-years-holidays-and-how-to.jpg" alt="Why You're Still Paying Off Last Year's Holidays (And How to Stop)" width="300" height="160" loading="lazy">
+      <div class="card-body">
+        <h4>Why You're Still Paying Off Last Year's Holidays (And How to Stop)</h4>
+        <p>It's June. Your holiday decorations are long gone. But your credit card balance might still be carrying the ghost of Christmas past.</p>
+      </div>
+    </a>
+<a href="../blog/the-sleep-at-night-number-why-your-real-emergency-fund-goal.html">
+      <img src="../images/blog/the-sleep-at-night-number-why-your-real-emergency-fund-goal.jpg" alt="The Sleep-at-Night Number: Why Your Real Emergency Fund Goal Isn't 6 Months" width="300" height="160" loading="lazy">
+      <div class="card-body">
+        <h4>The Sleep-at-Night Number: Why Your Real Emergency Fund Goal Isn't 6 Months</h4>
+        <p>Let me tell you a fable.</p>
+      </div>
+    </a>
+<a href="../blog/childcare-in-denver-how-families-are-surviving-the.html">
+      <img src="../images/blog/childcare-in-denver-how-families-are-surviving-the.jpg" alt="Childcare in Denver: How Families Are Surviving the $1,500/Month Reality" width="300" height="160" loading="lazy">
+      <div class="card-body">
+        <h4>Childcare in Denver: How Families Are Surviving the $1,500/Month Reality</h4>
+        <p>My client Jenna called me crying last month. She and her husband both work full-time. They have a 2‑year‑old and a 4‑year‑old. Their daycare bill? $2,...</p>
+      </div>
+    </a>
+<a href="../blog/how-to-negotiate-your-rent-in-denver-yes-you-can.html">
+      <img src="../images/blog/how-to-negotiate-your-rent-in-denver-yes-you-can.jpg" alt="How to Negotiate Your Rent in Denver (Yes, You Can)" width="300" height="160" loading="lazy">
+      <div class="card-body">
+        <h4>How to Negotiate Your Rent in Denver (Yes, You Can)</h4>
+        <p>“Wait, you can negotiate rent?” That's what my client Elena said when I suggested she ask her landlord for a lower renewal rate. She'd been renting th...</p>
+      </div>
+    </a>
+<a href="../blog/the-hidden-cost-of-car-ownership-in-denver-its-more-than.html">
+      <img src="../images/blog/the-hidden-cost-of-car-ownership-in-denver-its-more-than.jpg" alt="The Hidden Cost of Car Ownership in Denver (It's More Than You Think)" width="300" height="160" loading="lazy">
+      <div class="card-body">
+        <h4>The Hidden Cost of Car Ownership in Denver (It's More Than You Think)</h4>
+        <p>**January 15, 2026** – My car needed new tires. $780. I wasn't ready. My emergency fund took a hit.</p>
+      </div>
+    </a>
+<a href="../blog/the-psychology-of-impulse-spending-in-a-high-cost-city.html">
+      <img src="../images/blog/the-psychology-of-impulse-spending-in-a-high-cost-city.jpg" alt="The Psychology of Impulse Spending in a High-Cost City" width="300" height="160" loading="lazy">
+      <div class="card-body">
+        <h4>The Psychology of Impulse Spending in a High-Cost City</h4>
+        <p>I bought a $7 coffee yesterday. I didn't need it. I wasn't even thirsty. I just felt tired and frustrated and wanted one nice thing.</p>
+      </div>
+    </a>
+  </div>
+  
+
+
+
+
+
+
+<!-- TOOLS_ARTICLES_END -->
+</section>
+
+<div class="bct-container" style="padding-bottom:48px"><div class="bct-ad-slot has-content" data-ad-slot="tool_bottom" data-ad="tool_bottom"></div></div>
+
+<footer class="bct-footer">
+  <div class="bct-footer-grid">
+    <div>
+      <h4>Tools</h4>
+      <a href="./monthly-budget-calculator.html">Budget Calculator</a>
+      <a href="./savings-goal-calculator.html">Savings Goal</a>
+      <a href="./debt-payoff-calculator.html">Debt Payoff</a>
+      <a href="./50-30-20-calculator.html">50/30/20 Rule</a>
+      <a href="./emergency-fund-calculator.html">Emergency Fund</a>
+      <a href="./expense-splitter.html">Expense Splitter</a>
+      <a href="./retirement-savings-calculator.html">Retirement Savings</a>
+    </div>
+    <div>
+      <h4>Blog & Resources</h4>
+      <a href="../blog/index.html">All Articles</a>
+      <a href="../faq.html">FAQ</a>
+    </div>
+    <div>
+      <h4>Legal</h4>
+      <a href="../privacy.html">Privacy Policy</a>
+      <a href="../terms.html">Terms of Use</a>
+      <a href="../disclaimer.html">Disclaimer</a>
+      <a href="../disclosure.html">Ad Disclosure</a>
+    </div>
+    <div>
+      <h4>About / Contact</h4>
+      <a href="../about.html">About Us</a>
+      <a href="../contact.html">Contact</a>
+    </div>
+  </div>
+  <div class="bct-footer-bottom">
+    <p>Not financial advice. For educational purposes only.</p>
+    <p>&copy; 2026 BudgetCalcTool.org. All rights reserved.</p>
+  </div>
+</footer>
+
+<script src="../ads-loader.js"></script>
+<script>
+function bctToggleMenu() {
+  document.getElementById('mainNav').classList.toggle('active');
+}
+let currentCat = 'all';
+function filterCat(cat) {
+  currentCat = cat;
+  document.querySelectorAll('.bct-tools-cat').forEach(el => el.classList.remove('active'));
+  event.target.classList.add('active');
+  applyFilter();
+}
+function filterTools() {
+  applyFilter();
+}
+function applyFilter() {
+  const q = document.getElementById('toolSearch').value.toLowerCase();
+  document.querySelectorAll('.bct-tools-dir-item').forEach(item => {
+    const cat = item.dataset.cat;
+    const text = item.textContent.toLowerCase();
+    const catMatch = currentCat === 'all' || cat === currentCat;
+    const textMatch = text.includes(q);
+    item.style.display = catMatch && textMatch ? 'flex' : 'none';
+  });
+}
+</script>
+</body>
+</html>
