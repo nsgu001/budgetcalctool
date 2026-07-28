@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Build a zero-based monthly budget. Track income, fixed expenses, variable spending, and see what's left. All data stays in your browser.">
+<title>Monthly Budget Calculator | BudgetCalcTool.org</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css">
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Monthly Budget Calculator",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Any",
+  "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"},
+  "description": "Build a zero-based monthly budget that accounts for every dollar coming in and going out. All data stays in your browser.",
+  "url": "https://budgetcalctool.org/tools/monthly-budget-calculator.html",
+  "author": {"@type": "Person", "name": "Marcus Thompson", "url": "https://budgetcalctool.org/about.html"}
+}</script>
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://budgetcalctool.org/"},
+    {"@type": "ListItem", "position": 2, "name": "Tools", "item": "https://budgetcalctool.org/tools/index.html"},
+    {"@type": "ListItem", "position": 3, "name": "Monthly Budget Calculator", "item": "https://budgetcalctool.org/tools/monthly-budget-calculator.html"}
+  ]
+}</script>
+<meta property="og:title" content="Monthly Budget Calculator | BudgetCalcTool.org">
+<meta property="og:description" content="Build a zero-based monthly budget. All data stays in your browser.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://budgetcalctool.org/tools/monthly-budget-calculator.html">
+<meta property="og:image" content="https://budgetcalctool.org/favicon.ico">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://budgetcalctool.org/tools/monthly-budget-calculator.html">
+<style>
+.bct-tool-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: start; }
+.bct-input-panel { background: var(--bct-card); border-radius: var(--bct-radius); padding: 32px; box-shadow: var(--bct-shadow); }
+.bct-input-panel h2 { font-family: var(--bct-font-heading); font-size: 1.3rem; margin-bottom: 20px; }
+.bct-input-group { margin-bottom: 16px; }
+.bct-input-group label { display: block; font-size: 0.9rem; font-weight: 500; margin-bottom: 6px; }
+.bct-input-group input { width: 100%; padding: 10px 14px; border: 1px solid var(--bct-border); border-radius: 8px; font-size: 1rem; }
+.bct-input-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.bct-chart-panel { background: var(--bct-card); border-radius: var(--bct-radius); padding: 32px; box-shadow: var(--bct-shadow); text-align: center; }
+.bct-summary-box { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 24px; }
+.bct-summary-item { background: var(--bct-bg); border-radius: 10px; padding: 16px; }
+.bct-summary-item .val { font-size: 1.4rem; font-weight: 700; color: var(--bct-primary); }
+.bct-summary-item .lbl { font-size: 0.8rem; color: var(--bct-muted); margin-top: 4px; }
+.bct-history { background: var(--bct-card); border-radius: var(--bct-radius); padding: 24px; box-shadow: var(--bct-shadow); margin-top: 32px; }
+.bct-history h3 { font-family: var(--bct-font-heading); font-size: 1.2rem; margin-bottom: 16px; }
+.bct-history table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+.bct-history th, .bct-history td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--bct-border); }
+.bct-history th { color: var(--bct-muted); font-weight: 500; font-size: 0.8rem; text-transform: uppercase; }
+.bct-history tr:hover { background: var(--bct-bg); }
+.bct-tool-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 20px; }
+.bct-privacy-note { font-size: 0.85rem; color: var(--bct-muted); margin-top: 16px; font-style: italic; }
+.bct-related { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; margin-top: 32px; }
+.bct-related-card { background: var(--bct-card); border-radius: var(--bct-radius); padding: 20px; box-shadow: var(--bct-shadow); }
+.bct-related-card h4 { font-family: var(--bct-font-heading); font-size: 1.05rem; margin-bottom: 8px; }
+.bct-related-card p { font-size: 0.85rem; color: var(--bct-muted); }
+.bct-related-card a { color: var(--bct-secondary); text-decoration: none; font-weight: 500; font-size: 0.9rem; }
+@media (max-width: 768px) {
+  .bct-tool-layout { grid-template-columns: 1fr; }
+  .bct-input-row { grid-template-columns: 1fr; }
+  .bct-summary-box { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<header class="bct-header">
+  <nav class="bct-nav">
+    <a href="../index.html" class="bct-logo">BudgetCalcTool</a>
+    <button class="bct-mobile-menu-btn" onclick="bctToggleMenu()" aria-label="Menu">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+    <ul class="bct-nav-links" id="mainNav">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="./index.html">Tools</a></li>
+      <li><a href="../blog/index.html">Blog</a></li>
+      <li><a href="../about.html">About</a></li>
+      <li><a href="../contact.html">Contact</a></li>
+      <li><a href="../faq.html">FAQ</a></li>
+    </ul>
+  </nav>
+</header>
+
+<div class="bct-breadcrumb">
+  <a href="../index.html">Home</a> <span>/</span> <a href="./index.html">Tools</a> <span>/</span> Monthly Budget Calculator
+</div>
+
+<div class="bct-ad-slot has-content" data-ad-slot="article_top" data-ad="article_top"></div>
+
+<main class="bct-container bct-section">
+  <h1 style="font-family:var(--bct-font-heading);font-size:2rem;margin-bottom:8px">Monthly Budget Calculator</h1>
+  <p style="color:var(--bct-muted);margin-bottom:32px">Build a zero-based budget. Every dollar gets a job.</p>
+
+  <div class="bct-tool-layout">
+    <div class="bct-input-panel">
+      <h2>Income</h2>
+      <div class="bct-input-row">
+        <div class="bct-input-group"><label>Monthly Salary (after tax)</label><input type="number" id="incSalary" placeholder="0" oninput="calcBudget()"></div>
+        <div class="bct-input-group"><label>Side Income</label><input type="number" id="incSide" placeholder="0" oninput="calcBudget()"></div>
+      </div>
+      <div class="bct-input-group"><label>Other Income</label><input type="number" id="incOther" placeholder="0" oninput="calcBudget()"></div>
+
+      <h2 style="margin-top:24px">Fixed Expenses</h2>
+      <div class="bct-input-row">
+        <div class="bct-input-group"><label>Rent / Mortgage</label><input type="number" id="expRent" placeholder="0" oninput="calcBudget()"></div>
+        <div class="bct-input-group"><label>Utilities</label><input type="number" id="expUtilities" placeholder="0" oninput="calcBudget()"></div>
+      </div>
+      <div class="bct-input-row">
+        <div class="bct-input-group"><label>Insurance</label><input type="number" id="expInsurance" placeholder="0" oninput="calcBudget()"></div>
+        <div class="bct-input-group"><label>Loan Payments</label><input type="number" id="expLoans" placeholder="0" oninput="calcBudget()"></div>
+      </div>
+      <div class="bct-input-group"><label>Subscriptions & Other Fixed</label><input type="number" id="expFixedOther" placeholder="0" oninput="calcBudget()"></div>
+
+      <h2 style="margin-top:24px">Variable Expenses</h2>
+      <div class="bct-input-row">
+        <div class="bct-input-group"><label>Groceries</label><input type="number" id="expGroceries" placeholder="0" oninput="calcBudget()"></div>
+        <div class="bct-input-group"><label>Transportation</label><input type="number" id="expTransport" placeholder="0" oninput="calcBudget()"></div>
+      </div>
+      <div class="bct-input-row">
+        <div class="bct-input-group"><label>Entertainment</label><input type="number" id="expFun" placeholder="0" oninput="calcBudget()"></div>
+        <div class="bct-input-group"><label>Personal / Shopping</label><input type="number" id="expPersonal" placeholder="0" oninput="calcBudget()"></div>
+      </div>
+      <div class="bct-input-group"><label>Other Variable</label><input type="number" id="expVarOther" placeholder="0" oninput="calcBudget()"></div>
+
+      <div class="bct-tool-actions">
+        <button class="bct-btn bct-btn-primary" onclick="saveBudget()">Save to History</button>
+        <button class="bct-btn bct-btn-outline" onclick="exportBudget()">Export Report</button>
+        <button class="bct-btn bct-btn-outline" onclick="resetBudget()" style="color:#c0392b;border-color:#c0392b">Reset</button>
+      </div>
+      <p class="bct-privacy-note">All data stays in your browser — we never see it.</p>
+    </div>
+
+    <div class="bct-chart-panel">
+      <div class="bct-summary-box">
+        <div class="bct-summary-item"><div class="val" id="sumIncome">$0</div><div class="lbl">Total Income</div></div>
+        <div class="bct-summary-item"><div class="val" id="sumExpenses">$0</div><div class="lbl">Total Expenses</div></div>
+        <div class="bct-summary-item"><div class="val" id="sumLeft" style="color:#27AE60">$0</div><div class="lbl">Remaining</div></div>
+      </div>
+      <canvas id="budgetChart" width="400" height="300" style="max-width:100%"></canvas>
+      <div id="budgetFeedback" style="margin-top:16px;font-size:0.95rem;color:var(--bct-muted)"></div>
+    </div>
+  </div>
+
+  <div class="bct-ad-slot has-content" data-ad-slot="article_middle" data-ad="article_middle"></div>
+
+  <div class="bct-history">
+    <h3>Saved Budgets (History)</h3>
+    <div style="overflow-x:auto">
+      <table id="historyTable">
+        <thead><tr><th>Date</th><th>Income</th><th>Fixed</th><th>Variable</th><th>Remaining</th><th>Action</th></tr></thead>
+        <tbody id="historyBody"><tr><td colspan="6" style="color:var(--bct-muted)">No saved budgets yet. Click "Save to History" after entering your numbers.</td></tr></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="bct-ad-slot has-content" data-ad-slot="article_bottom" data-ad="article_bottom"></div>
+
+  <section style="margin-top:48px">
+    <h2 style="font-family:var(--bct-font-heading);font-size:1.5rem;margin-bottom:20px">Related Tools & Articles</h2>
+    <div class="bct-related">
+      <div class="bct-related-card">
+        <h4>50/30/20 Calculator</h4>
+        <p>See how your budget aligns with the classic needs/wants/savings split.</p>
+        <a href="./50-30-20-calculator.html">Try it →</a>
+      </div>
+      <div class="bct-related-card">
+        <h4>Emergency Fund Calculator</h4>
+        <p>Calculate how much you need stashed away before you start investing.</p>
+        <a href="./emergency-fund-calculator.html">Try it →</a>
+      </div>
+      <div class="bct-related-card">
+        <h4>Expense Splitter</h4>
+        <p>Sharing costs with a partner or roommates? Split bills fairly.</p>
+        <a href="./expense-splitter.html">Try it →</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="bct-footer">
+  <div class="bct-footer-grid">
+    <div>
+      <h4>Tools</h4>
+      <a href="./monthly-budget-calculator.html">Budget Calculator</a>
+      <a href="./savings-goal-calculator.html">Savings Goal</a>
+      <a href="./debt-payoff-calculator.html">Debt Payoff</a>
+      <a href="./50-30-20-calculator.html">50/30/20 Rule</a>
+      <a href="./emergency-fund-calculator.html">Emergency Fund</a>
+      <a href="./expense-splitter.html">Expense Splitter</a>
+      <a href="./retirement-savings-calculator.html">Retirement Savings</a>
+    </div>
+    <div>
+      <h4>Blog & Resources</h4>
+      <a href="../blog/index.html">All Articles</a>
+      <a href="../faq.html">FAQ</a>
+    </div>
+    <div>
+      <h4>Legal</h4>
+      <a href="../privacy.html">Privacy Policy</a>
+      <a href="../terms.html">Terms of Use</a>
+      <a href="../disclaimer.html">Disclaimer</a>
+      <a href="../disclosure.html">Ad Disclosure</a>
+    </div>
+    <div>
+      <h4>About / Contact</h4>
+      <a href="../about.html">About Us</a>
+      <a href="../contact.html">Contact</a>
+    </div>
+  </div>
+  <div class="bct-footer-bottom">
+    <p>Not financial advice. For educational purposes only.</p>
+    <p>&copy; 2026 BudgetCalcTool.org. All rights reserved.</p>
+  </div>
+</footer>
+
+<script src="../ads-loader.js"></script>
+<script>
+function bctToggleMenu() {
+  document.getElementById('mainNav').classList.toggle('active');
+}
+
+const LS_KEY = 'bct_budget_history';
+
+function getVal(id) {
+  return parseFloat(document.getElementById(id).value) || 0;
+}
+
+function fmt(n) {
+  return '$' + n.toLocaleString('en-US', {maximumFractionDigits: 0});
+}
+
+function calcBudget() {
+  const income = getVal('incSalary') + getVal('incSide') + getVal('incOther');
+  const fixed = getVal('expRent') + getVal('expUtilities') + getVal('expInsurance') + getVal('expLoans') + getVal('expFixedOther');
+  const variable = getVal('expGroceries') + getVal('expTransport') + getVal('expFun') + getVal('expPersonal') + getVal('expVarOther');
+  const totalExp = fixed + variable;
+  const remaining = income - totalExp;
+
+  document.getElementById('sumIncome').textContent = fmt(income);
+  document.getElementById('sumExpenses').textContent = fmt(totalExp);
+  const leftEl = document.getElementById('sumLeft');
+  leftEl.textContent = fmt(remaining);
+  leftEl.style.color = remaining >= 0 ? '#27AE60' : '#E74C3C';
+
+  const fb = document.getElementById('budgetFeedback');
+  if (remaining > 0) fb.textContent = 'Great! You have ' + fmt(remaining) + ' left to allocate toward savings or debt.';
+  else if (remaining === 0) fb.textContent = 'Zero-based budget achieved. Every dollar is assigned.';
+  else fb.textContent = 'Warning: You are over budget by ' + fmt(Math.abs(remaining)) + '. Consider trimming variable expenses.';
+
+  drawChart(income, fixed, variable, remaining);
+  saveInputs();
+}
+
+function drawChart(inc, fix, var_, rem) {
+  const c = document.getElementById('budgetChart');
+  const ctx = c.getContext('2d');
+  const dpr = window.devicePixelRatio || 1;
+  c.width = 400 * dpr; c.height = 300 * dpr;
+  ctx.scale(dpr, dpr);
+  ctx.clearRect(0, 0, 400, 300);
+
+  const data = [
+    {label: 'Fixed', val: fix, color: '#3498DB'},
+    {label: 'Variable', val: var_, color: '#E67E22'},
+    {label: 'Remaining', val: Math.max(0, rem), color: '#27AE60'}
+  ];
+  const total = fix + var_ + Math.max(0, rem);
+  if (total === 0) {
+    ctx.fillStyle = '#636E72'; ctx.font = '14px Roboto'; ctx.textAlign = 'center';
+    ctx.fillText('Enter your numbers to see the breakdown', 200, 150);
+    return;
+  }
+
+  let start = -Math.PI / 2;
+  const cx = 140, cy = 150, r = 100;
+  data.forEach(d => {
+    const slice = (d.val / total) * 2 * Math.PI;
+    ctx.beginPath(); ctx.moveTo(cx, cy); ctx.arc(cx, cy, r, start, start + slice); ctx.closePath();
+    ctx.fillStyle = d.color; ctx.fill();
+    start += slice;
+  });
+  ctx.beginPath(); ctx.arc(cx, cy, 60, 0, 2 * Math.PI); ctx.fillStyle = '#fff'; ctx.fill();
+
+  let y = 60;
+  data.forEach(d => {
+    ctx.fillStyle = d.color; ctx.fillRect(280, y, 14, 14);
+    ctx.fillStyle = '#2C3E50'; ctx.font = '13px Roboto'; ctx.textAlign = 'left';
+    ctx.fillText(d.label + ': ' + fmt(d.val), 302, y + 12);
+    y += 28;
+  });
+}
+
+function saveInputs() {
+  const ids = ['incSalary','incSide','incOther','expRent','expUtilities','expInsurance','expLoans','expFixedOther','expGroceries','expTransport','expFun','expPersonal','expVarOther'];
+  const obj = {};
+  ids.forEach(id => obj[id] = document.getElementById(id).value);
+  localStorage.setItem('bct_budget_inputs', JSON.stringify(obj));
+}
+
+function loadInputs() {
+  const raw = localStorage.getItem('bct_budget_inputs');
+  if (!raw) return;
+  const obj = JSON.parse(raw);
+  Object.keys(obj).forEach(id => { const el = document.getElementById(id); if (el) el.value = obj[id]; });
+  calcBudget();
+}
+
+function saveBudget() {
+  const income = getVal('incSalary') + getVal('incSide') + getVal('incOther');
+  const fixed = getVal('expRent') + getVal('expUtilities') + getVal('expInsurance') + getVal('expLoans') + getVal('expFixedOther');
+  const variable = getVal('expGroceries') + getVal('expTransport') + getVal('expFun') + getVal('expPersonal') + getVal('expVarOther');
+  const remaining = income - fixed - variable;
+  if (income === 0) { alert('Please enter your income first.'); return; }
+  const history = JSON.parse(localStorage.getItem(LS_KEY) || '[]');
+  history.unshift({date: new Date().toLocaleDateString(), income, fixed, variable, remaining});
+  if (history.length > 10) history.pop();
+  localStorage.setItem(LS_KEY, JSON.stringify(history));
+  renderHistory();
+}
+
+function renderHistory() {
+  const history = JSON.parse(localStorage.getItem(LS_KEY) || '[]');
+  const tbody = document.getElementById('historyBody');
+  if (history.length === 0) { tbody.innerHTML = '<tr><td colspan="6" style="color:var(--bct-muted)">No saved budgets yet. Click "Save to History" after entering your numbers.</td></tr>'; return; }
+  tbody.innerHTML = history.map((h, i) => '<tr><td>' + h.date + '</td><td>' + fmt(h.income) + '</td><td>' + fmt(h.fixed) + '</td><td>' + fmt(h.variable) + '</td><td style="color:' + (h.remaining >= 0 ? '#27AE60' : '#E74C3C') + '">' + fmt(h.remaining) + '</td><td><button onclick="deleteHistory(' + i + ')" style="background:none;border:none;color:#c0392b;cursor:pointer;font-size:0.85rem">Delete</button></td></tr>').join('');
+}
+
+function deleteHistory(i) {
+  const history = JSON.parse(localStorage.getItem(LS_KEY) || '[]');
+  history.splice(i, 1); localStorage.setItem(LS_KEY, JSON.stringify(history)); renderHistory();
+}
+
+function exportBudget() {
+  const income = getVal('incSalary') + getVal('incSide') + getVal('incOther');
+  const fixed = getVal('expRent') + getVal('expUtilities') + getVal('expInsurance') + getVal('expLoans') + getVal('expFixedOther');
+  const variable = getVal('expGroceries') + getVal('expTransport') + getVal('expFun') + getVal('expPersonal') + getVal('expVarOther');
+  const remaining = income - fixed - variable;
+  const lines = [
+    'MONTHLY BUDGET REPORT — BudgetCalcTool.org',
+    'Generated: ' + new Date().toLocaleString(),
+    '',
+    'TOTAL INCOME: ' + fmt(income),
+    'FIXED EXPENSES: ' + fmt(fixed),
+    'VARIABLE EXPENSES: ' + fmt(variable),
+    'REMAINING: ' + fmt(remaining),
+    '',
+    'Note: This is an estimate for educational purposes only. Not financial advice.'
+  ];
+  const blob = new Blob([lines.join('\n')], {type: 'text/plain'});
+  const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'budget-report.txt'; a.click();
+}
+
+function resetBudget() {
+  const ids = ['incSalary','incSide','incOther','expRent','expUtilities','expInsurance','expLoans','expFixedOther','expGroceries','expTransport','expFun','expPersonal','expVarOther'];
+  ids.forEach(id => document.getElementById(id).value = '');
+  localStorage.removeItem('bct_budget_inputs');
+  calcBudget();
+}
+
+window.addEventListener('DOMContentLoaded', () => { loadInputs(); renderHistory(); });
+</script>
+</body>
+</html>
