@@ -1,0 +1,77 @@
+{
+  "site_name": "BudgetCalcTool.org",
+  "domain": "budgetcalctool.org",
+  "prefix": "bct",
+  "language": "en",
+  "author": {
+    "name": "Marcus Thompson",
+    "slug": "marcus-thompson",
+    "location": "Denver, Colorado",
+    "email": "privacy@budgetcalctool.org",
+    "job_title": "Certified Financial Counselor",
+    "alumni_of": "University of Colorado Denver",
+    "knows_about": [
+      "Budget Planning",
+      "Debt Management",
+      "Savings Strategies",
+      "Emergency Funds",
+      "Retirement Planning"
+    ]
+  },
+  "tools": [
+    {
+      "slug": "monthly-budget-calculator",
+      "name": "Monthly Budget Calculator",
+      "description": "Build a zero-based budget that accounts for every dollar coming in and going out."
+    },
+    {
+      "slug": "savings-goal-calculator",
+      "name": "Savings Goal Calculator",
+      "description": "Figure out exactly how much to save each month to hit your target on time."
+    },
+    {
+      "slug": "debt-payoff-calculator",
+      "name": "Debt Payoff Calculator",
+      "description": "Compare snowball vs avalanche methods and see your debt-free date."
+    },
+    {
+      "slug": "50-30-20-calculator",
+      "name": "50/30/20 Calculator",
+      "description": "Split your income into needs, wants, and savings with this classic framework."
+    },
+    {
+      "slug": "emergency-fund-calculator",
+      "name": "Emergency Fund Calculator",
+      "description": "Calculate how many months of expenses you should stash away for emergencies."
+    },
+    {
+      "slug": "expense-splitter",
+      "name": "Expense Splitter",
+      "description": "Split shared bills fairly between roommates, couples, or travel groups."
+    },
+    {
+      "slug": "retirement-savings-calculator",
+      "name": "Retirement Savings Calculator",
+      "description": "Project your nest egg and see if you're on track for the retirement you want."
+    }
+  ],
+  "layouts": {
+    "index": "B",
+    "tools_index": "G",
+    "blog_index": "A",
+    "post": "C",
+    "tool_detail": "H",
+    "about": "B",
+    "contact": "C",
+    "faq": "B"
+  },
+  "theme": {
+    "primary": "#2C3E50",
+    "accent": "#27AE60",
+    "secondary": "#3498DB",
+    "bg": "#F8F9FA",
+    "card": "#FFFFFF",
+    "text": "#2C3E50",
+    "muted": "#636E72"
+  }
+}
