@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Compare debt snowball vs avalanche payoff strategies. See your debt-free date, total interest, and monthly payment schedule. All data stays in your browser.">
+<title>Debt Payoff Calculator | BudgetCalcTool.org</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css">
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Debt Payoff Calculator",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Any",
+  "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"},
+  "description": "Compare debt snowball vs avalanche payoff strategies. See your debt-free date, total interest, and monthly payment schedule. All data stays in your browser.",
+  "url": "https://budgetcalctool.org/tools/debt-payoff-calculator.html",
+  "author": {"@type": "Person", "name": "Marcus Thompson", "url": "https://budgetcalctool.org/about.html"}
+}</script>
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://budgetcalctool.org/"},
+    {"@type": "ListItem", "position": 2, "name": "Tools", "item": "https://budgetcalctool.org/tools/index.html"},
+    {"@type": "ListItem", "position": 3, "name": "Debt Payoff Calculator", "item": "https://budgetcalctool.org/tools/debt-payoff-calculator.html"}
+  ]
+}</script>
+<meta property="og:title" content="Debt Payoff Calculator | BudgetCalcTool.org">
+<meta property="og:description" content="Compare snowball vs avalanche debt payoff strategies. All data stays in your browser.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://budgetcalctool.org/tools/debt-payoff-calculator.html">
+<meta property="og:image" content="https://budgetcalctool.org/favicon.ico">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://budgetcalctool.org/tools/debt-payoff-calculator.html">
+<style>
+.bct-dp-hero { background: linear-gradient(135deg, #c0392b 0%, #922b21 100%); color: #fff; padding: 48px 24px; text-align: center; }
+.bct-dp-hero h1 { font-family: var(--bct-font-heading); font-size: 2.2rem; margin-bottom: 8px; }
+.bct-dp-hero p { opacity: 0.9; max-width: 600px; margin: 0 auto; }
+.bct-dp-debt-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-bottom: 24px; }
+.bct-dp-debt-card { background: var(--bct-card); border-radius: var(--bct-radius); padding: 24px; box-shadow: var(--bct-shadow); border-top: 4px solid #c0392b; }
+.bct-dp-debt-card h4 { font-family: var(--bct-font-heading); margin-bottom: 12px; font-size: 1.1rem; }
+.bct-dp-input { margin-bottom: 12px; }
+.bct-dp-input label { display: block; font-size: 0.85rem; font-weight: 500; margin-bottom: 4px; }
+.bct-dp-input input { width: 100%; padding: 10px 12px; border: 1px solid var(--bct-border); border-radius: 6px; font-size: 1rem; }
+.bct-dp-extra { background: var(--bct-card); border-radius: var(--bct-radius); padding: 24px; box-shadow: var(--bct-shadow); margin-bottom: 24px; }
+.bct-dp-results { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; margin-bottom: 24px; }
+.bct-dp-result-card { background: var(--bct-card); border-radius: var(--bct-radius); padding: 28px; box-shadow: var(--bct-shadow); }
+.bct-dp-result-card.snowball { border-top: 4px solid #3498DB; }
+.bct-dp-result-card.avalanche { border-top: 4px solid #9B59B6; }
+.bct-dp-result-card h3 { font-family: var(--bct-font-heading); font-size: 1.2rem; margin-bottom: 16px; }
+.bct-dp-stat { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid var(--bct-border); font-size: 0.95rem; }
+.bct-dp-stat:last-child { border-bottom: none; }
+.bct-dp-stat .num { font-weight: 700; }
+.bct-dp-chart-wrap { background: var(--bct-card); border-radius: var(--bct-radius); padding: 24px; box-shadow: var(--bct-shadow); margin-bottom: 24px; }
+.bct-dp-table-wrap { background: var(--bct-card); border-radius: var(--bct-radius); padding: 24px; box-shadow: var(--bct-shadow); margin-bottom: 24px; }
+.bct-dp-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+.bct-dp-table th, .bct-dp-table td { padding: 10px; text-align: left; border-bottom: 1px solid var(--bct-border); }
+.bct-dp-table th { background: var(--bct-bg); font-weight: 600; font-size: 0.75rem; text-transform: uppercase; color: var(--bct-muted); }
+.bct-dp-table tr:hover { background: var(--bct-bg); }
+.bct-dp-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 20px; }
+.bct-privacy-note { font-size: 0.85rem; color: var(--bct-muted); margin-top: 16px; font-style: italic; }
+</style>
+</head>
+<body>
+<header class="bct-header">
+  <nav class="bct-nav">
+    <a href="../index.html" class="bct-logo">BudgetCalcTool</a>
+    <button class="bct-mobile-menu-btn" onclick="bctToggleMenu()" aria-label="Menu">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+    <ul class="bct-nav-links" id="mainNav">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="./index.html">Tools</a></li>
+      <li><a href="../blog/index.html">Blog</a></li>
+      <li><a href="../about.html">About</a></li>
+      <li><a href="../contact.html">Contact</a></li>
+      <li><a href="../faq.html">FAQ</a></li>
+    </ul>
+  </nav>
+</header>
+
+<div class="bct-breadcrumb">
+  <a href="../index.html">Home</a> <span>/</span> <a href="./index.html">Tools</a> <span>/</span> Debt Payoff Calculator
+</div>
+
+<div class="bct-ad-slot has-content" data-ad-slot="article_top" data-ad="article_top"></div>
+
+<div class="bct-dp-hero">
+  <h1>Debt Payoff Calculator</h1>
+  <p>Compare the snowball and avalanche methods side by side. See exactly when you'll be debt-free and how much interest you'll pay.</p>
+</div>
+
+<main class="bct-container bct-section">
+  <div class="bct-dp-extra">
+    <h2 style="font-family:var(--bct-font-heading);font-size:1.3rem;margin-bottom:16px">Monthly Payment Budget</h2>
+    <div class="bct-dp-input" style="max-width:320px">
+      <label>Total you can pay toward debt each month ($)</label>
+      <input type="number" id="dpMonthly" placeholder="e.g. 800" oninput="calcDP()">
+    </div>
+  </div>
+
+  <h2 style="font-family:var(--bct-font-heading);font-size:1.3rem;margin-bottom:16px">Your Debts</h2>
+  <div class="bct-dp-debt-grid" id="debtGrid">
+    <div class="bct-dp-debt-card">
+      <h4>Debt 1</h4>
+      <div class="bct-dp-input"><label>Balance ($)</label><input type="number" class="dp-bal" placeholder="5000" oninput="calcDP()"></div>
+      <div class="bct-dp-input"><label>APR (%)</label><input type="number" class="dp-rate" placeholder="18.99" step="0.01" oninput="calcDP()"></div>
+      <div class="bct-dp-input"><label>Min Payment ($)</label><input type="number" class="dp-min" placeholder="150" oninput="calcDP()"></div>
+    </div>
+    <div class="bct-dp-debt-card">
+      <h4>Debt 2</h4>
+      <div class="bct-dp-input"><label>Balance ($)</label><input type="number" class="dp-bal" placeholder="3000" oninput="calcDP()"></div>
+      <div class="bct-dp-input"><label>APR (%)</label><input type="number" class="dp-rate" placeholder="12.99" step="0.01" oninput="calcDP()"></div>
+      <div class="bct-dp-input"><label>Min Payment ($)</label><input type="number" class="dp-min" placeholder="100" oninput="calcDP()"></div>
+    </div>
+    <div class="bct-dp-debt-card">
+      <h4>Debt 3</h4>
+      <div class="bct-dp-input"><label>Balance ($)</label><input type="number" class="dp-bal" placeholder="0" oninput="calcDP()"></div>
+      <div class="bct-dp-input"><label>APR (%)</label><input type="number" class="dp-rate" placeholder="0" step="0.01" oninput="calcDP()"></div>
+      <div class="bct-dp-input"><label>Min Payment ($)</label><input type="number" class="dp-min" placeholder="0" oninput="calcDP()"></div>
+    </div>
+  </div>
+
+  <div class="bct-dp-actions">
+    <button class="bct-btn bct-btn-primary" onclick="saveDP()">Save Results</button>
+    <button class="bct-btn bct-btn-outline" onclick="exportDP()">Export Report</button>
+    <button class="bct-btn bct-btn-outline" onclick="resetDP()" style="color:#c0392b;border-color:#c0392b">Reset</button>
+  </div>
+  <p class="bct-privacy-note">All data stays in your browser — we never see it.</p>
+
+  <div class="bct-dp-results" id="dpResults" style="margin-top:32px">
+    <div class="bct-dp-result-card snowball">
+      <h3>🌨️ Snowball Method</h3>
+      <div class="bct-dp-stat"><span>Months to payoff</span><span class="num" id="snMonths">—</span></div>
+      <div class="bct-dp-stat"><span>Total interest paid</span><span class="num" id="snInterest">—</span></div>
+      <div class="bct-dp-stat"><span>Total paid</span><span class="num" id="snTotal">—</span></div>
+      <div class="bct-dp-stat"><span>Debt-free date</span><span class="num" id="snDate">—</span></div>
+    </div>
+    <div class="bct-dp-result-card avalanche">
+      <h3>🏔️ Avalanche Method</h3>
+      <div class="bct-dp-stat"><span>Months to payoff</span><span class="num" id="avMonths">—</span></div>
+      <div class="bct-dp-stat"><span>Total interest paid</span><span class="num" id="avInterest">—</span></div>
+      <div class="bct-dp-stat"><span>Total paid</span><span class="num" id="avTotal">—</span></div>
+      <div class="bct-dp-stat"><span>Debt-free date</span><span class="num" id="avDate">—</span></div>
+    </div>
+  </div>
+
+  <div class="bct-dp-chart-wrap">
+    <h3 style="font-family:var(--bct-font-heading);font-size:1.2rem;margin-bottom:16px">Balance Over Time</h3>
+    <canvas id="dpChart" width="800" height="320" style="max-width:100%"></canvas>
+  </div>
+
+  <div class="bct-ad-slot has-content" data-ad-slot="article_middle" data-ad="article_middle"></div>
+
+  <div class="bct-dp-table-wrap">
+    <h3 style="font-family:var(--bct-font-heading);font-size:1.2rem;margin-bottom:16px">Snowball Payment Schedule</h3>
+    <div style="overflow-x:auto">
+      <table class="bct-dp-table" id="snTable">
+        <thead><tr><th>Month</th><th>Debt</th><th>Payment</th><th>Interest</th><th>Remaining</th></tr></thead>
+        <tbody id="snTableBody"><tr><td colspan="5" style="color:var(--bct-muted)">Enter your debts to see the schedule.</td></tr></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="bct-dp-table-wrap">
+    <h3 style="font-family:var(--bct-font-heading);font-size:1.2rem;margin-bottom:16px">Avalanche Payment Schedule</h3>
+    <div style="overflow-x:auto">
+      <table class="bct-dp-table" id="avTable">
+        <thead><tr><th>Month</th><th>Debt</th><th>Payment</th><th>Interest</th><th>Remaining</th></tr></thead>
+        <tbody id="avTableBody"><tr><td colspan="5" style="color:var(--bct-muted)">Enter your debts to see the schedule.</td></tr></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="bct-ad-slot has-content" data-ad-slot="article_bottom" data-ad="article_bottom"></div>
+
+  <section style="margin-top:48px">
+    <h2 style="font-family:var(--bct-font-heading);font-size:1.5rem;margin-bottom:20px">Related Tools</h2>
+    <div class="bct-related">
+      <div class="bct-related-card">
+        <h4>Monthly Budget Calculator</h4>
+        <p>Find room in your budget to increase your debt payments.</p>
+        <a href="./monthly-budget-calculator.html">Try it →</a>
+      </div>
+      <div class="bct-related-card">
+        <h4>Emergency Fund Calculator</h4>
+        <p>Build a safety net so you don't need to borrow in emergencies.</p>
+        <a href="./emergency-fund-calculator.html">Try it →</a>
+      </div>
+      <div class="bct-related-card">
+        <h4>50/30/20 Calculator</h4>
+        <p>See how much of your income should go toward debt repayment.</p>
+        <a href="./50-30-20-calculator.html">Try it →</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="bct-footer">
+  <div class="bct-footer-grid">
+    <div>
+      <h4>Tools</h4>
+      <a href="./monthly-budget-calculator.html">Budget Calculator</a>
+      <a href="./savings-goal-calculator.html">Savings Goal</a>
+      <a href="./debt-payoff-calculator.html">Debt Payoff</a>
+      <a href="./50-30-20-calculator.html">50/30/20 Rule</a>
+      <a href="./emergency-fund-calculator.html">Emergency Fund</a>
+      <a href="./expense-splitter.html">Expense Splitter</a>
+      <a href="./retirement-savings-calculator.html">Retirement Savings</a>
+    </div>
+    <div>
+      <h4>Blog & Resources</h4>
+      <a href="../blog/index.html">All Articles</a>
+      <a href="../faq.html">FAQ</a>
+    </div>
+    <div>
+      <h4>Legal</h4>
+      <a href="../privacy.html">Privacy Policy</a>
+      <a href="../terms.html">Terms of Use</a>
+      <a href="../disclaimer.html">Disclaimer</a>
+      <a href="../disclosure.html">Ad Disclosure</a>
+    </div>
+    <div>
+      <h4>About / Contact</h4>
+      <a href="../about.html">About Us</a>
+      <a href="../contact.html">Contact</a>
+    </div>
+  </div>
+  <div class="bct-footer-bottom">
+    <p>Not financial advice. For educational purposes only.</p>
+    <p>&copy; 2026 BudgetCalcTool.org. All rights reserved.</p>
+  </div>
+</footer>
+
+<script src="../ads-loader.js"></script>
+<script>
+function bctToggleMenu() {
+  document.getElementById('mainNav').classList.toggle('active');
+}
+
+const DP_LS = 'bct_debt_history';
+
+function getDebts() {
+  const cards = document.querySelectorAll('.bct-dp-debt-card');
+  const debts = [];
+  cards.forEach(card => {
+    const bal = parseFloat(card.querySelector('.dp-bal').value) || 0;
+    const rate = parseFloat(card.querySelector('.dp-rate').value) || 0;
+    const min = parseFloat(card.querySelector('.dp-min').value) || 0;
+    if (bal > 0) debts.push({bal, rate: rate / 100 / 12, min});
+  });
+  return debts;
+}
+
+function fmt(n) { return '$' + n.toLocaleString('en-US', {maximumFractionDigits: 0}); }
+
+function simulate(debts, totalMonthly, strategy) {
+  const ds = debts.map(d => ({...d, bal: d.bal}));
+  let month = 0, totalInterest = 0, totalPaid = 0, history = [];
+  const balances = [];
+  while (ds.some(d => d.bal > 0.01) && month < 600) {
+    let totalBal = ds.reduce((s, d) => s + d.bal, 0);
+    balances.push(totalBal);
+    let available = totalMonthly;
+    ds.forEach(d => {
+      const interest = d.bal * d.rate;
+      d.bal += interest;
+      totalInterest += interest;
+    });
+    if (strategy === 'snowball') ds.sort((a, b) => a.bal - b.bal);
+    else ds.sort((a, b) => b.rate - a.rate);
+    ds.forEach(d => {
+      if (d.bal <= 0.01) return;
+      const pay = Math.min(Math.max(d.min, available), d.bal);
+      d.bal -= pay;
+      available -= pay;
+      totalPaid += pay;
+      history.push({month: month + 1, debt: strategy === 'snowball' ? 'Snowball' : 'Avalanche', payment: pay, interest: d.bal * d.rate, remaining: d.bal});
+    });
+    month++;
+  }
+  return {months: month, totalInterest, totalPaid, history, balances};
+}
+
+function calcDP() {
+  const debts = getDebts();
+  const monthly = parseFloat(document.getElementById('dpMonthly').value) || 0;
+  if (debts.length === 0 || monthly <= 0) {
+    document.getElementById('snMonths').textContent = '—';
+    document.getElementById('snInterest').textContent = '—';
+    document.getElementById('snTotal').textContent = '—';
+    document.getElementById('snDate').textContent = '—';
+    document.getElementById('avMonths').textContent = '—';
+    document.getElementById('avInterest').textContent = '—';
+    document.getElementById('avTotal').textContent = '—';
+    document.getElementById('avDate').textContent = '—';
+    clearChart(); clearTables(); return;
+  }
+  const sn = simulate(debts, monthly, 'snowball');
+  const av = simulate(debts, monthly, 'avalanche');
+
+  document.getElementById('snMonths').textContent = sn.months;
+  document.getElementById('snInterest').textContent = fmt(sn.totalInterest);
+  document.getElementById('snTotal').textContent = fmt(sn.totalPaid + sn.totalInterest);
+  document.getElementById('snDate').textContent = new Date(Date.now() + sn.months * 30 * 86400000).toLocaleDateString('en-US', {month:'short', year:'numeric'});
+
+  document.getElementById('avMonths').textContent = av.months;
+  document.getElementById('avInterest').textContent = fmt(av.totalInterest);
+  document.getElementById('avTotal').textContent = fmt(av.totalPaid + av.totalInterest);
+  document.getElementById('avDate').textContent = new Date(Date.now() + av.months * 30 * 86400000).toLocaleDateString('en-US', {month:'short', year:'numeric'});
+
+  drawDPChart(sn.balances, av.balances);
+  renderTable('snTableBody', sn.history.slice(0, 24));
+  renderTable('avTableBody', av.history.slice(0, 24));
+  saveDPInputs();
+}
+
+function drawDPChart(snBal, avBal) {
+  const c = document.getElementById('dpChart');
+  const ctx = c.getContext('2d');
+  const dpr = window.devicePixelRatio || 1;
+  c.width = 800 * dpr; c.height = 320 * dpr;
+  ctx.scale(dpr, dpr);
+  ctx.clearRect(0, 0, 800, 320);
+  const pad = 50, w = 800 - pad * 2, h = 320 - pad * 2;
+  const maxM = Math.max(snBal.length, avBal.length);
+  const maxY = Math.max(snBal[0] || 0, avBal[0] || 0);
+  if (maxM === 0) return;
+
+  ctx.strokeStyle = '#e1e8ed'; ctx.lineWidth = 1;
+  for (let i = 0; i <= 5; i++) {
+    const y = pad + h - (i / 5) * h;
+    ctx.beginPath(); ctx.moveTo(pad, y); ctx.lineTo(pad + w, y); ctx.stroke();
+    ctx.fillStyle = '#636E72'; ctx.font = '12px Roboto'; ctx.textAlign = 'right';
+    ctx.fillText(fmt((i / 5) * maxY), pad - 10, y + 4);
+  }
+
+  ctx.strokeStyle = '#3498DB'; ctx.lineWidth = 3; ctx.beginPath();
+  snBal.forEach((b, i) => { const x = pad + (i / maxM) * w; const y = pad + h - (b / maxY) * h; if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y); });
+  ctx.stroke();
+
+  ctx.strokeStyle = '#9B59B6'; ctx.lineWidth = 3; ctx.beginPath();
+  avBal.forEach((b, i) => { const x = pad + (i / maxM) * w; const y = pad + h - (b / maxY) * h; if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y); });
+  ctx.stroke();
+
+  ctx.fillStyle = '#3498DB'; ctx.fillRect(pad + w - 160, 20, 14, 14);
+  ctx.fillStyle = '#2C3E50'; ctx.font = '13px Roboto'; ctx.textAlign = 'left';
+  ctx.fillText('Snowball', pad + w - 140, 32);
+  ctx.fillStyle = '#9B59B6'; ctx.fillRect(pad + w - 160, 44, 14, 14);
+  ctx.fillStyle = '#2C3E50';
+  ctx.fillText('Avalanche', pad + w - 140, 56);
+}
+
+function clearChart() {
+  const c = document.getElementById('dpChart');
+  const ctx = c.getContext('2d');
+  const dpr = window.devicePixelRatio || 1;
+  c.width = 800 * dpr; c.height = 320 * dpr;
+  ctx.scale(dpr, dpr); ctx.clearRect(0, 0, 800, 320);
+  ctx.fillStyle = '#636E72'; ctx.font = '14px Roboto'; ctx.textAlign = 'center';
+  ctx.fillText('Enter your debts and monthly budget to see the comparison', 400, 160);
+}
+
+function clearTables() {
+  document.getElementById('snTableBody').innerHTML = '<tr><td colspan="5" style="color:var(--bct-muted)">Enter your debts to see the schedule.</td></tr>';
+  document.getElementById('avTableBody').innerHTML = '<tr><td colspan="5" style="color:var(--bct-muted)">Enter your debts to see the schedule.</td></tr>';
+}
+
+function renderTable(tbodyId, rows) {
+  const tbody = document.getElementById(tbodyId);
+  if (rows.length === 0) { tbody.innerHTML = '<tr><td colspan="5" style="color:var(--bct-muted)">No data.</td></tr>'; return; }
+  tbody.innerHTML = rows.map(r => '<tr><td>' + r.month + '</td><td>' + r.debt + '</td><td>' + fmt(r.payment) + '</td><td>' + fmt(r.interest) + '</td><td>' + fmt(Math.max(0, r.remaining)) + '</td></tr>').join('');
+}
+
+function saveDPInputs() {
+  const vals = [];
+  document.querySelectorAll('.bct-dp-debt-card').forEach(card => {
+    vals.push({
+      bal: card.querySelector('.dp-bal').value,
+      rate: card.querySelector('.dp-rate').value,
+      min: card.querySelector('.dp-min').value
+    });
+  });
+  localStorage.setItem('bct_debt_inputs', JSON.stringify({monthly: document.getElementById('dpMonthly').value, debts: vals}));
+}
+
+function loadDPInputs() {
+  const raw = localStorage.getItem('bct_debt_inputs');
+  if (!raw) return;
+  const obj = JSON.parse(raw);
+  document.getElementById('dpMonthly').value = obj.monthly || '';
+  const cards = document.querySelectorAll('.bct-dp-debt-card');
+  obj.debts.forEach((d, i) => {
+    if (cards[i]) {
+      cards[i].querySelector('.dp-bal').value = d.bal || '';
+      cards[i].querySelector('.dp-rate').value = d.rate || '';
+      cards[i].querySelector('.dp-min').value = d.min || '';
+    }
+  });
+  calcDP();
+}
+
+function saveDP() {
+  const debts = getDebts();
+  const monthly = parseFloat(document.getElementById('dpMonthly').value) || 0;
+  if (debts.length === 0) { alert('Enter at least one debt first.'); return; }
+  const sn = simulate(debts, monthly, 'snowball');
+  const av = simulate(debts, monthly, 'avalanche');
+  const hist = JSON.parse(localStorage.getItem(DP_LS) || '[]');
+  hist.unshift({date: new Date().toLocaleDateString(), monthly, debts: debts.length, snMonths: sn.months, avMonths: av.months, snInterest: sn.totalInterest, avInterest: av.totalInterest});
+  if (hist.length > 10) hist.pop();
+  localStorage.setItem(DP_LS, JSON.stringify(hist));
+  alert('Results saved to history.');
+}
+
+function exportDP() {
+  const debts = getDebts();
+  const monthly = parseFloat(document.getElementById('dpMonthly').value) || 0;
+  if (debts.length === 0) { alert('Enter debts first.'); return; }
+  const sn = simulate(debts, monthly, 'snowball');
+  const av = simulate(debts, monthly, 'avalanche');
+  const lines = [
+    'DEBT PAYOFF REPORT — BudgetCalcTool.org',
+    'Generated: ' + new Date().toLocaleString(),
+    '',
+    'Monthly Budget: ' + fmt(monthly),
+    'Number of Debts: ' + debts.length,
+    '',
+    'SNOWBALL METHOD',
+    'Months to Payoff: ' + sn.months,
+    'Total Interest: ' + fmt(sn.totalInterest),
+    'Total Paid: ' + fmt(sn.totalPaid + sn.totalInterest),
+    'Debt-Free Date: ' + new Date(Date.now() + sn.months * 30 * 86400000).toLocaleDateString(),
+    '',
+    'AVALANCHE METHOD',
+    'Months to Payoff: ' + av.months,
+    'Total Interest: ' + fmt(av.totalInterest),
+    'Total Paid: ' + fmt(av.totalPaid + av.totalInterest),
+    'Debt-Free Date: ' + new Date(Date.now() + av.months * 30 * 86400000).toLocaleDateString(),
+    '',
+    'Note: This is an estimate for educational purposes only. Not financial advice.'
+  ];
+  const blob = new Blob([lines.join('\n')], {type: 'text/plain'});
+  const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'debt-payoff-report.txt'; a.click();
+}
+
+function resetDP() {
+  document.getElementById('dpMonthly').value = '';
+  document.querySelectorAll('.bct-dp-debt-card').forEach(card => {
+    card.querySelector('.dp-bal').value = '';
+    card.querySelector('.dp-rate').value = '';
+    card.querySelector('.dp-min').value = '';
+  });
+  localStorage.removeItem('bct_debt_inputs');
+  calcDP();
+}
+
+window.addEventListener('DOMContentLoaded', () => { loadDPInputs(); });
+</script>
+</body>
+</html>
