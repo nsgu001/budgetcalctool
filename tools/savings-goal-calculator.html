@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Calculate exactly how much to save each month to reach your goal on time. Compare different timelines and interest rates. All data stays in your browser.">
+<title>Savings Goal Calculator | BudgetCalcTool.org</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css">
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Savings Goal Calculator",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Any",
+  "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"},
+  "description": "Calculate exactly how much to save each month to reach your goal on time. Compare different timelines and interest rates. All data stays in your browser.",
+  "url": "https://budgetcalctool.org/tools/savings-goal-calculator.html",
+  "author": {"@type": "Person", "name": "Marcus Thompson", "url": "https://budgetcalctool.org/about.html"}
+}</script>
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://budgetcalctool.org/"},
+    {"@type": "ListItem", "position": 2, "name": "Tools", "item": "https://budgetcalctool.org/tools/index.html"},
+    {"@type": "ListItem", "position": 3, "name": "Savings Goal Calculator", "item": "https://budgetcalctool.org/tools/savings-goal-calculator.html"}
+  ]
+}</script>
+<meta property="og:title" content="Savings Goal Calculator | BudgetCalcTool.org">
+<meta property="og:description" content="Calculate monthly savings needed to reach your goal. All data stays in your browser.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://budgetcalctool.org/tools/savings-goal-calculator.html">
+<meta property="og:image" content="https://budgetcalctool.org/favicon.ico">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://budgetcalctool.org/tools/savings-goal-calculator.html">
+<style>
+.bct-sg-hero { background: linear-gradient(135deg, #27AE60 0%, #1e8449 100%); color: #fff; padding: 48px 24px; text-align: center; border-radius: 0 0 var(--bct-radius) var(--bct-radius); }
+.bct-sg-hero h1 { font-family: var(--bct-font-heading); font-size: 2.2rem; margin-bottom: 8px; }
+.bct-sg-hero p { opacity: 0.9; max-width: 560px; margin: 0 auto; }
+.bct-sg-inputs { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; margin-bottom: 32px; }
+.bct-sg-inputs .bct-input-group { margin-bottom: 0; }
+.bct-sg-card { background: var(--bct-card); border-radius: var(--bct-radius); padding: 32px; box-shadow: var(--bct-shadow); margin-bottom: 24px; }
+.bct-sg-result { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin: 24px 0; }
+.bct-sg-result-box { background: linear-gradient(135deg, #f8f9fa 0%, #e8f5e9 100%); border-radius: 12px; padding: 24px; text-align: center; border-left: 4px solid #27AE60; }
+.bct-sg-result-box .big { font-size: 1.8rem; font-weight: 700; color: var(--bct-primary); }
+.bct-sg-result-box .small { font-size: 0.85rem; color: var(--bct-muted); margin-top: 4px; }
+.bct-sg-chart-wrap { background: var(--bct-card); border-radius: var(--bct-radius); padding: 24px; box-shadow: var(--bct-shadow); margin-bottom: 24px; }
+.bct-sg-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+.bct-sg-table th, .bct-sg-table td { padding: 12px; text-align: left; border-bottom: 1px solid var(--bct-border); }
+.bct-sg-table th { background: var(--bct-bg); font-weight: 600; font-size: 0.8rem; text-transform: uppercase; color: var(--bct-muted); }
+.bct-sg-table tr:hover { background: var(--bct-bg); }
+.bct-sg-history { background: var(--bct-card); border-radius: var(--bct-radius); padding: 24px; box-shadow: var(--bct-shadow); margin-top: 24px; }
+.bct-sg-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 20px; }
+.bct-privacy-note { font-size: 0.85rem; color: var(--bct-muted); margin-top: 16px; font-style: italic; }
+</style>
+</head>
+<body>
+<header class="bct-header">
+  <nav class="bct-nav">
+    <a href="../index.html" class="bct-logo">BudgetCalcTool</a>
+    <button class="bct-mobile-menu-btn" onclick="bctToggleMenu()" aria-label="Menu">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+    <ul class="bct-nav-links" id="mainNav">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="./index.html">Tools</a></li>
+      <li><a href="../blog/index.html">Blog</a></li>
+      <li><a href="../about.html">About</a></li>
+      <li><a href="../contact.html">Contact</a></li>
+      <li><a href="../faq.html">FAQ</a></li>
+    </ul>
+  </nav>
+</header>
+
+<div class="bct-breadcrumb">
+  <a href="../index.html">Home</a> <span>/</span> <a href="./index.html">Tools</a> <span>/</span> Savings Goal Calculator
+</div>
+
+<div class="bct-ad-slot has-content" data-ad-slot="article_top" data-ad="article_top"></div>
+
+<div class="bct-sg-hero">
+  <h1>Savings Goal Calculator</h1>
+  <p>Figure out exactly how much to save each month to hit your target — with or without interest.</p>
+</div>
+
+<main class="bct-container bct-section">
+  <div class="bct-sg-card">
+    <h2 style="font-family:var(--bct-font-heading);font-size:1.3rem;margin-bottom:20px">Your Goal</h2>
+    <div class="bct-sg-inputs">
+      <div class="bct-input-group"><label>Goal Amount ($)</label><input type="number" id="sgGoal" placeholder="e.g. 10000" oninput="calcSG()"></div>
+      <div class="bct-input-group"><label>Current Savings ($)</label><input type="number" id="sgCurrent" placeholder="e.g. 2000" oninput="calcSG()"></div>
+      <div class="bct-input-group"><label>Months to Goal</label><input type="number" id="sgMonths" placeholder="e.g. 24" oninput="calcSG()"></div>
+      <div class="bct-input-group"><label>Annual Interest Rate (%)</label><input type="number" id="sgRate" placeholder="e.g. 4.5" step="0.1" oninput="calcSG()"></div>
+    </div>
+
+    <div class="bct-sg-result">
+      <div class="bct-sg-result-box"><div class="big" id="sgMonthly">$0</div><div class="small">Monthly Savings Needed</div></div>
+      <div class="bct-sg-result-box"><div class="big" id="sgTotalSaved">$0</div><div class="small">Total You'll Contribute</div></div>
+      <div class="bct-sg-result-box"><div class="big" id="sgInterestEarned">$0</div><div class="small">Interest Earned</div></div>
+    </div>
+
+    <div class="bct-sg-actions">
+      <button class="bct-btn bct-btn-primary" onclick="saveSG()">Save Scenario</button>
+      <button class="bct-btn bct-btn-outline" onclick="exportSG()">Export Report</button>
+      <button class="bct-btn bct-btn-outline" onclick="resetSG()" style="color:#c0392b;border-color:#c0392b">Reset</button>
+    </div>
+    <p class="bct-privacy-note">All data stays in your browser — we never see it.</p>
+  </div>
+
+  <div class="bct-sg-chart-wrap">
+    <h3 style="font-family:var(--bct-font-heading);font-size:1.2rem;margin-bottom:16px">Growth Projection</h3>
+    <canvas id="sgChart" width="800" height="320" style="max-width:100%"></canvas>
+  </div>
+
+  <div class="bct-ad-slot has-content" data-ad-slot="article_middle" data-ad="article_middle"></div>
+
+  <div class="bct-sg-card">
+    <h3 style="font-family:var(--bct-font-heading);font-size:1.2rem;margin-bottom:16px">Compare Scenarios</h3>
+    <p style="color:var(--bct-muted);font-size:0.9rem;margin-bottom:16px">See how different timelines affect your monthly commitment.</p>
+    <div style="overflow-x:auto">
+      <table class="bct-sg-table" id="sgCompareTable">
+        <thead><tr><th>Timeline</th><th>Monthly Needed</th><th>Total Contributed</th><th>Interest Earned</th></tr></thead>
+        <tbody id="sgCompareBody"><tr><td colspan="4" style="color:var(--bct-muted)">Enter your goal above to generate comparisons.</td></tr></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="bct-sg-history">
+    <h3 style="font-family:var(--bct-font-heading);font-size:1.2rem;margin-bottom:16px">Saved Scenarios</h3>
+    <div style="overflow-x:auto">
+      <table class="bct-sg-table" id="sgHistoryTable">
+        <thead><tr><th>Date</th><th>Goal</th><th>Months</th><th>Rate</th><th>Monthly</th><th>Action</th></tr></thead>
+        <tbody id="sgHistoryBody"><tr><td colspan="6" style="color:var(--bct-muted)">No saved scenarios yet.</td></tr></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="bct-ad-slot has-content" data-ad-slot="article_bottom" data-ad="article_bottom"></div>
+
+  <section style="margin-top:48px">
+    <h2 style="font-family:var(--bct-font-heading);font-size:1.5rem;margin-bottom:20px">Related Tools</h2>
+    <div class="bct-related">
+      <div class="bct-related-card">
+        <h4>Emergency Fund Calculator</h4>
+        <p>Before you save for a vacation, make sure your emergency fund is solid.</p>
+        <a href="./emergency-fund-calculator.html">Try it →</a>
+      </div>
+      <div class="bct-related-card">
+        <h4>Retirement Savings Calculator</h4>
+        <p>See how small monthly contributions compound into a retirement nest egg.</p>
+        <a href="./retirement-savings-calculator.html">Try it →</a>
+      </div>
+      <div class="bct-related-card">
+        <h4>Monthly Budget Calculator</h4>
+        <p>Find room in your budget for these savings goals.</p>
+        <a href="./monthly-budget-calculator.html">Try it →</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="bct-footer">
+  <div class="bct-footer-grid">
+    <div>
+      <h4>Tools</h4>
+      <a href="./monthly-budget-calculator.html">Budget Calculator</a>
+      <a href="./savings-goal-calculator.html">Savings Goal</a>
+      <a href="./debt-payoff-calculator.html">Debt Payoff</a>
+      <a href="./50-30-20-calculator.html">50/30/20 Rule</a>
+      <a href="./emergency-fund-calculator.html">Emergency Fund</a>
+      <a href="./expense-splitter.html">Expense Splitter</a>
+      <a href="./retirement-savings-calculator.html">Retirement Savings</a>
+    </div>
+    <div>
+      <h4>Blog & Resources</h4>
+      <a href="../blog/index.html">All Articles</a>
+      <a href="../faq.html">FAQ</a>
+    </div>
+    <div>
+      <h4>Legal</h4>
+      <a href="../privacy.html">Privacy Policy</a>
+      <a href="../terms.html">Terms of Use</a>
+      <a href="../disclaimer.html">Disclaimer</a>
+      <a href="../disclosure.html">Ad Disclosure</a>
+    </div>
+    <div>
+      <h4>About / Contact</h4>
+      <a href="../about.html">About Us</a>
+      <a href="../contact.html">Contact</a>
+    </div>
+  </div>
+  <div class="bct-footer-bottom">
+    <p>Not financial advice. For educational purposes only.</p>
+    <p>&copy; 2026 BudgetCalcTool.org. All rights reserved.</p>
+  </div>
+</footer>
+
+<script src="../ads-loader.js"></script>
+<script>
+function bctToggleMenu() {
+  document.getElementById('mainNav').classList.toggle('active');
+}
+
+const SG_LS = 'bct_savings_history';
+
+function get(id) { return parseFloat(document.getElementById(id).value) || 0; }
+function fmt(n) { return '$' + n.toLocaleString('en-US', {maximumFractionDigits: 0}); }
+
+function calcSG() {
+  const goal = get('sgGoal');
+  const current = get('sgCurrent');
+  const months = get('sgMonths');
+  const rate = get('sgRate') / 100 / 12;
+  const needed = Math.max(0, goal - current);
+
+  if (goal <= 0 || months <= 0) {
+    document.getElementById('sgMonthly').textContent = '$0';
+    document.getElementById('sgTotalSaved').textContent = '$0';
+    document.getElementById('sgInterestEarned').textContent = '$0';
+    clearChart(); clearCompare(); return;
+  }
+
+  let monthly = 0, totalSaved = 0, interest = 0;
+  if (rate > 0) {
+    monthly = needed * rate / (Math.pow(1 + rate, months) - 1);
+    totalSaved = monthly * months;
+    interest = needed - totalSaved;
+  } else {
+    monthly = needed / months;
+    totalSaved = monthly * months;
+    interest = 0;
+  }
+
+  document.getElementById('sgMonthly').textContent = fmt(monthly);
+  document.getElementById('sgTotalSaved').textContent = fmt(totalSaved);
+  document.getElementById('sgInterestEarned').textContent = fmt(Math.max(0, interest));
+
+  drawSGChart(current, monthly, rate, months, goal);
+  buildCompare(goal, current, rate);
+  saveSGInputs();
+}
+
+function drawSGChart(start, monthly, rate, months, goal) {
+  const c = document.getElementById('sgChart');
+  const ctx = c.getContext('2d');
+  const dpr = window.devicePixelRatio || 1;
+  c.width = 800 * dpr; c.height = 320 * dpr;
+  ctx.scale(dpr, dpr);
+  ctx.clearRect(0, 0, 800, 320);
+
+  const pad = 50, w = 800 - pad * 2, h = 320 - pad * 2;
+  let balance = start;
+  const data = [];
+  for (let m = 0; m <= months; m++) {
+    data.push({m, bal: balance});
+    balance = balance * (1 + rate) + monthly;
+  }
+  const maxY = Math.max(goal, data[data.length - 1].bal);
+
+  ctx.strokeStyle = '#e1e8ed'; ctx.lineWidth = 1;
+  for (let i = 0; i <= 5; i++) {
+    const y = pad + h - (i / 5) * h;
+    ctx.beginPath(); ctx.moveTo(pad, y); ctx.lineTo(pad + w, y); ctx.stroke();
+    ctx.fillStyle = '#636E72'; ctx.font = '12px Roboto'; ctx.textAlign = 'right';
+    ctx.fillText(fmt((i / 5) * maxY), pad - 10, y + 4);
+  }
+
+  ctx.strokeStyle = '#27AE60'; ctx.lineWidth = 3; ctx.beginPath();
+  data.forEach((pt, i) => {
+    const x = pad + (pt.m / months) * w;
+    const y = pad + h - (pt.bal / maxY) * h;
+    if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+  });
+  ctx.stroke();
+
+  ctx.fillStyle = '#27AE60';
+  data.forEach((pt, i) => {
+    if (i % Math.ceil(months / 12) === 0 || i === months) {
+      const x = pad + (pt.m / months) * w;
+      const y = pad + h - (pt.bal / maxY) * h;
+      ctx.beginPath(); ctx.arc(x, y, 4, 0, 2 * Math.PI); ctx.fill();
+    }
+  });
+
+  ctx.strokeStyle = '#E74C3C'; ctx.setLineDash([6, 4]); ctx.lineWidth = 2;
+  const goalY = pad + h - (goal / maxY) * h;
+  ctx.beginPath(); ctx.moveTo(pad, goalY); ctx.lineTo(pad + w, goalY); ctx.stroke();
+  ctx.setLineDash([]);
+  ctx.fillStyle = '#E74C3C'; ctx.font = 'bold 12px Roboto'; ctx.textAlign = 'left';
+  ctx.fillText('Goal: ' + fmt(goal), pad + w + 6, goalY + 4);
+
+  ctx.fillStyle = '#2C3E50'; ctx.font = '14px Roboto'; ctx.textAlign = 'center';
+  ctx.fillText('Months', pad + w / 2, 320 - 10);
+}
+
+function clearChart() {
+  const c = document.getElementById('sgChart');
+  const ctx = c.getContext('2d');
+  const dpr = window.devicePixelRatio || 1;
+  c.width = 800 * dpr; c.height = 320 * dpr;
+  ctx.scale(dpr, dpr); ctx.clearRect(0, 0, 800, 320);
+  ctx.fillStyle = '#636E72'; ctx.font = '14px Roboto'; ctx.textAlign = 'center';
+  ctx.fillText('Enter your goal to see the growth projection', 400, 160);
+}
+
+function buildCompare(goal, current, rate) {
+  if (goal <= 0) { clearCompare(); return; }
+  const tbody = document.getElementById('sgCompareBody');
+  const timelines = [6, 12, 18, 24, 36, 48, 60];
+  let html = '';
+  timelines.forEach(mo => {
+    const needed = Math.max(0, goal - current);
+    let monthly = 0, total = 0, interest = 0;
+    if (rate > 0) { monthly = needed * rate / (Math.pow(1 + rate, mo) - 1); total = monthly * mo; interest = needed - total; }
+    else { monthly = needed / mo; total = monthly * mo; }
+    html += '<tr><td>' + mo + ' months</td><td>' + fmt(monthly) + '</td><td>' + fmt(total) + '</td><td>' + fmt(Math.max(0, interest)) + '</td></tr>';
+  });
+  tbody.innerHTML = html;
+}
+
+function clearCompare() {
+  document.getElementById('sgCompareBody').innerHTML = '<tr><td colspan="4" style="color:var(--bct-muted)">Enter your goal above to generate comparisons.</td></tr>';
+}
+
+function saveSGInputs() {
+  const obj = {goal: document.getElementById('sgGoal').value, current: document.getElementById('sgCurrent').value, months: document.getElementById('sgMonths').value, rate: document.getElementById('sgRate').value};
+  localStorage.setItem('bct_savings_inputs', JSON.stringify(obj));
+}
+
+function loadSGInputs() {
+  const raw = localStorage.getItem('bct_savings_inputs');
+  if (!raw) return;
+  const obj = JSON.parse(raw);
+  ['sgGoal','sgCurrent','sgMonths','sgRate'].forEach(id => { if (obj[id.replace('sg','').toLowerCase()] !== undefined) document.getElementById(id).value = obj[id.replace('sg','').toLowerCase()]; });
+  // Fix mapping
+  if (obj.goal !== undefined) document.getElementById('sgGoal').value = obj.goal;
+  if (obj.current !== undefined) document.getElementById('sgCurrent').value = obj.current;
+  if (obj.months !== undefined) document.getElementById('sgMonths').value = obj.months;
+  if (obj.rate !== undefined) document.getElementById('sgRate').value = obj.rate;
+  calcSG();
+}
+
+function saveSG() {
+  const goal = get('sgGoal'); const months = get('sgMonths'); const rate = get('sgRate');
+  if (goal <= 0) { alert('Enter a goal amount first.'); return; }
+  const needed = Math.max(0, goal - get('sgCurrent'));
+  const monthlyRate = rate / 100 / 12;
+  let monthly = 0;
+  if (monthlyRate > 0) monthly = needed * monthlyRate / (Math.pow(1 + monthlyRate, months) - 1);
+  else monthly = needed / months;
+  const hist = JSON.parse(localStorage.getItem(SG_LS) || '[]');
+  hist.unshift({date: new Date().toLocaleDateString(), goal, months, rate, monthly});
+  if (hist.length > 10) hist.pop();
+  localStorage.setItem(SG_LS, JSON.stringify(hist));
+  renderSGHistory();
+}
+
+function renderSGHistory() {
+  const hist = JSON.parse(localStorage.getItem(SG_LS) || '[]');
+  const tbody = document.getElementById('sgHistoryBody');
+  if (hist.length === 0) { tbody.innerHTML = '<tr><td colspan="6" style="color:var(--bct-muted)">No saved scenarios yet.</td></tr>'; return; }
+  tbody.innerHTML = hist.map((h, i) => '<tr><td>' + h.date + '</td><td>' + fmt(h.goal) + '</td><td>' + h.months + '</td><td>' + h.rate + '%</td><td>' + fmt(h.monthly) + '</td><td><button onclick="deleteSG(' + i + ')" style="background:none;border:none;color:#c0392b;cursor:pointer;font-size:0.85rem">Delete</button></td></tr>').join('');
+}
+
+function deleteSG(i) {
+  const hist = JSON.parse(localStorage.getItem(SG_LS) || '[]');
+  hist.splice(i, 1); localStorage.setItem(SG_LS, JSON.stringify(hist)); renderSGHistory();
+}
+
+function exportSG() {
+  const goal = get('sgGoal'); const current = get('sgCurrent'); const months = get('sgMonths'); const rate = get('sgRate');
+  const needed = Math.max(0, goal - current);
+  const monthlyRate = rate / 100 / 12;
+  let monthly = 0, total = 0, interest = 0;
+  if (monthlyRate > 0) { monthly = needed * monthlyRate / (Math.pow(1 + monthlyRate, months) - 1); total = monthly * months; interest = needed - total; }
+  else { monthly = needed / months; total = monthly * months; }
+  const lines = [
+    'SAVINGS GOAL REPORT — BudgetCalcTool.org',
+    'Generated: ' + new Date().toLocaleString(),
+    '',
+    'Goal Amount: ' + fmt(goal),
+    'Current Savings: ' + fmt(current),
+    'Months to Goal: ' + months,
+    'Annual Interest Rate: ' + rate + '%',
+    '',
+    'Monthly Savings Needed: ' + fmt(monthly),
+    'Total Contributed: ' + fmt(total),
+    'Interest Earned: ' + fmt(Math.max(0, interest)),
+    '',
+    'Note: This is an estimate for educational purposes only. Not financial advice.'
+  ];
+  const blob = new Blob([lines.join('\n')], {type: 'text/plain'});
+  const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'savings-goal-report.txt'; a.click();
+}
+
+function resetSG() {
+  ['sgGoal','sgCurrent','sgMonths','sgRate'].forEach(id => document.getElementById(id).value = '');
+  localStorage.removeItem('bct_savings_inputs');
+  calcSG();
+}
+
+window.addEventListener('DOMContentLoaded', () => { loadSGInputs(); renderSGHistory(); });
+</script>
+</body>
+</html>
