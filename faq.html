@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Frequently asked questions about BudgetCalcTool.org.">
+<title>FAQ | BudgetCalcTool.org</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./style.css">
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://budgetcalctool.org/"},
+    {"@type": "ListItem", "position": 2, "name": "FAQ", "item": "https://budgetcalctool.org/faq.html"}
+  ]
+}</script>
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type": "Question", "name": "Is BudgetCalcTool.org free to use?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, all calculators and articles are completely free. No paywalls, no premium tiers."}},
+    {"@type": "Question", "name": "Do you store my financial data?", "acceptedAnswer": {"@type": "Answer", "text": "No. All calculations happen in your browser. We use localStorage only to save your inputs for convenience, but your data never leaves your device."}},
+    {"@type": "Question", "name": "Can I use these tools for business budgeting?", "acceptedAnswer": {"@type": "Answer", "text": "Our tools are designed for personal and household budgeting. For business finances, we recommend consulting a business accountant."}},
+    {"@type": "Question", "name": "How accurate are the calculators?", "acceptedAnswer": {"@type": "Answer", "text": "They provide solid estimates based on standard formulas. However, real-world results may vary due to taxes, fees, and changing interest rates. Always verify major decisions with a professional."}},
+    {"@type": "Question", "name": "Do you offer personalized financial advice?", "acceptedAnswer": {"@type": "Answer", "text": "No. We do not offer professional services or consultation. Our tools and content are for educational purposes only."}},
+    {"@type": "Question", "name": "How do I start budgeting if I've never done it before?", "acceptedAnswer": {"@type": "Answer", "text": "Start with the Monthly Budget Calculator. List your income and every expense for one month. Don't judge the numbers—just observe them. Then decide one category to trim by 10%. That's your first win."}},
+    {"@type": "Question", "name": "What's the difference between snowball and avalanche debt methods?", "acceptedAnswer": {"@type": "Answer", "text": "Snowball pays smallest debts first for psychological wins. Avalanche pays highest-interest debts first to save the most money. Use the Debt Payoff Calculator to see both side by side with your actual numbers."}},
+    {"@type": "Question", "name": "How much should I have in an emergency fund?", "acceptedAnswer": {"@type": "Answer", "text": "It depends on your job stability, family size, and health insurance. The generic 3-6 months advice is too broad. Use the Emergency Fund Calculator to get a personalized recommendation based on your actual risk factors."}},
+    {"@type": "Question", "name": "Can I use these calculators on my phone?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Every calculator is responsive and works on mobile browsers. Your data is saved via localStorage, so you can start on your laptop and finish on your phone without losing anything."}},
+    {"@type": "Question", "name": "Why are your calculators free? How do you make money?", "acceptedAnswer": {"@type": "Answer", "text": "We earn revenue through display advertising and affiliate partnerships. We never charge for calculators, never sell your data, and never push financial products. Our Ad Disclosure page has the full breakdown."}}
+  ]
+}</script>
+<meta property="og:title" content="FAQ | BudgetCalcTool.org">
+<meta property="og:description" content="Frequently asked questions about BudgetCalcTool.org.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://budgetcalctool.org/faq.html">
+<link rel="canonical" href="https://budgetcalctool.org/faq.html">
+<style>
+.bct-faq-item { border-bottom: 1px solid var(--bct-border); }
+.bct-faq-question { width: 100%; background: none; border: none; text-align: left; padding: 20px 0; font-size: 1.1rem; font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; align-items: center; color: var(--bct-text); font-family: var(--bct-font-body); }
+.bct-faq-question::after { content: "+"; font-size: 1.3rem; color: var(--bct-accent); transition: transform 0.2s; }
+.bct-faq-item.active .bct-faq-question::after { content: "−"; }
+.bct-faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
+.bct-faq-answer-inner { padding: 0 0 20px; color: var(--bct-muted); line-height: 1.7; }
+.bct-faq-item.active .bct-faq-answer { max-height: 300px; }
+</style>
+<link rel="icon" type="image/x-icon" href="./favicon.ico">
+</head>
+<body>
+<header class="bct-header">
+  <nav class="bct-nav">
+    <a href="./index.html" class="bct-logo">BudgetCalcTool</a>
+    <button class="bct-mobile-menu-btn" onclick="bctToggleMenu()" aria-label="Menu">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+    <ul class="bct-nav-links" id="mainNav">
+      <li><a href="./index.html">Home</a></li>
+      <li><a href="./tools/index.html">Tools</a></li>
+      <li><a href="./blog/index.html">Blog</a></li>
+      <li><a href="./about.html">About</a></li>
+      <li><a href="./contact.html">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<div class="bct-breadcrumb">
+  <a href="./index.html">Home</a> <span>/</span> FAQ
+</div>
+
+<main class="bct-container bct-section">
+  <div class="bct-card">
+    <h1 style="font-family:var(--bct-font-heading);font-size:2rem;margin-bottom:8px">Frequently Asked Questions</h1>
+    <p style="color:var(--bct-muted);margin-bottom:32px">Quick answers to common questions.</p>
+
+    <div class="bct-faq-item">
+      <button class="bct-faq-question" onclick="this.parentElement.classList.toggle('active')">Is BudgetCalcTool.org free to use?</button>
+      <div class="bct-faq-answer"><div class="bct-faq-answer-inner">Yes, all calculators and articles are completely free. No paywalls, no premium tiers.</div></div>
+    </div>
+    <div class="bct-faq-item">
+      <button class="bct-faq-question" onclick="this.parentElement.classList.toggle('active')">Do you store my financial data?</button>
+      <div class="bct-faq-answer"><div class="bct-faq-answer-inner">No. All calculations happen in your browser. We use localStorage only to save your inputs for convenience, but your data never leaves your device.</div></div>
+    </div>
+    <div class="bct-faq-item">
+      <button class="bct-faq-question" onclick="this.parentElement.classList.toggle('active')">Can I use these tools for business budgeting?</button>
+      <div class="bct-faq-answer"><div class="bct-faq-answer-inner">Our tools are designed for personal and household budgeting. For business finances, we recommend consulting a business accountant.</div></div>
+    </div>
+    <div class="bct-faq-item">
+      <button class="bct-faq-question" onclick="this.parentElement.classList.toggle('active')">How accurate are the calculators?</button>
+      <div class="bct-faq-answer"><div class="bct-faq-answer-inner">They provide solid estimates based on standard formulas. However, real-world results may vary due to taxes, fees, and changing interest rates. Always verify major decisions with a professional.</div></div>
+    </div>
+    <div class="bct-faq-item">
+      <button class="bct-faq-question" onclick="this.parentElement.classList.toggle('active')">Do you offer personalized financial advice?</button>
+      <div class="bct-faq-answer"><div class="bct-faq-answer-inner">No. We do not offer professional services or consultation. Our tools and content are for educational purposes only.</div></div>
+    </div>
+  </div>
+
+    <div class="bct-faq-item">
+      <button class="bct-faq-question" onclick="this.parentElement.classList.toggle('active')">How do I start budgeting if I've never done it before?</button>
+      <div class="bct-faq-answer"><div class="bct-faq-answer-inner">Start with the Monthly Budget Calculator. List your income and every expense for one month. Don't judge the numbers—just observe them. Then decide one category to trim by 10%. That's your first win.</div></div>
+    </div>
+    <div class="bct-faq-item">
+      <button class="bct-faq-question" onclick="this.parentElement.classList.toggle('active')">What's the difference between snowball and avalanche debt methods?</button>
+      <div class="bct-faq-answer"><div class="bct-faq-answer-inner">Snowball pays smallest debts first for psychological wins. Avalanche pays highest-interest debts first to save the most money. Use the Debt Payoff Calculator to see both side by side with your actual numbers.</div></div>
+    </div>
+    <div class="bct-faq-item">
+      <button class="bct-faq-question" onclick="this.parentElement.classList.toggle('active')">How much should I have in an emergency fund?</button>
+      <div class="bct-faq-answer"><div class="bct-faq-answer-inner">It depends on your job stability, family size, and health insurance. The generic 3-6 months advice is too broad. Use the Emergency Fund Calculator to get a personalized recommendation based on your actual risk factors.</div></div>
+    </div>
+    <div class="bct-faq-item">
+      <button class="bct-faq-question" onclick="this.parentElement.classList.toggle('active')">Can I use these calculators on my phone?</button>
+      <div class="bct-faq-answer"><div class="bct-faq-answer-inner">Yes. Every calculator is responsive and works on mobile browsers. Your data is saved via localStorage, so you can start on your laptop and finish on your phone without losing anything.</div></div>
+    </div>
+    <div class="bct-faq-item">
+      <button class="bct-faq-question" onclick="this.parentElement.classList.toggle('active')">Why are your calculators free? How do you make money?</button>
+      <div class="bct-faq-answer"><div class="bct-faq-answer-inner">We earn revenue through display advertising and affiliate partnerships. We never charge for calculators, never sell your data, and never push financial products. Our Ad Disclosure page has the full breakdown.</div></div>
+    </div>
+</main>
+
+<footer class="bct-footer">
+  <div class="bct-footer-grid">
+    <div>
+      <h4>Tools</h4>
+      <a href="./tools/monthly-budget-calculator.html">Budget Calculator</a>
+      <a href="./tools/savings-goal-calculator.html">Savings Goal</a>
+      <a href="./tools/debt-payoff-calculator.html">Debt Payoff</a>
+      <a href="./tools/50-30-20-calculator.html">50/30/20 Rule</a>
+      <a href="./tools/emergency-fund-calculator.html">Emergency Fund</a>
+      <a href="./tools/expense-splitter.html">Expense Splitter</a>
+      <a href="./tools/retirement-savings-calculator.html">Retirement Savings</a>
+    </div>
+    <div>
+      <h4>Blog & Resources</h4>
+      <a href="./blog/index.html">All Articles</a>
+      <a href="./faq.html">FAQ</a>
+    </div>
+    <div>
+      <h4>Legal</h4>
+      <a href="./privacy.html">Privacy Policy</a>
+      <a href="./terms.html">Terms of Use</a>
+      <a href="./disclaimer.html">Disclaimer</a>
+      <a href="./disclosure.html">Ad Disclosure</a>
+    </div>
+    <div>
+      <h4>About / Contact</h4>
+      <a href="./about.html">About Us</a>
+      <a href="./contact.html">Contact</a>
+    </div>
+  </div>
+  <div class="bct-footer-bottom">
+    <p>Not financial advice. For educational purposes only.</p>
+    <p>&copy; 2026 BudgetCalcTool.org. All rights reserved.</p>
+  </div>
+</footer>
+<script>
+function bctToggleMenu() {
+  document.getElementById('mainNav').classList.toggle('active');
+}
+</script>
+</body>
+</html>
