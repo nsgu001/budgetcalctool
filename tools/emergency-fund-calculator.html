@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Calculate how many months of expenses you should stash away for emergencies based on your job stability, family size, and risk factors. All data stays in your browser.">
+<title>Emergency Fund Calculator | BudgetCalcTool.org</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../style.css">
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Emergency Fund Calculator",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Any",
+  "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"},
+  "description": "Calculate how many months of expenses you should stash away for emergencies based on your job stability, family size, and risk factors. All data stays in your browser.",
+  "url": "https://budgetcalctool.org/tools/emergency-fund-calculator.html",
+  "author": {"@type": "Person", "name": "Marcus Thompson", "url": "https://budgetcalctool.org/about.html"}
+}</script>
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://budgetcalctool.org/"},
+    {"@type": "ListItem", "position": 2, "name": "Tools", "item": "https://budgetcalctool.org/tools/index.html"},
+    {"@type": "ListItem", "position": 3, "name": "Emergency Fund Calculator", "item": "https://budgetcalctool.org/tools/emergency-fund-calculator.html"}
+  ]
+}</script>
+<meta property="og:title" content="Emergency Fund Calculator | BudgetCalcTool.org">
+<meta property="og:description" content="Calculate your recommended emergency fund size. All data stays in your browser.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://budgetcalctool.org/tools/emergency-fund-calculator.html">
+<meta property="og:image" content="https://budgetcalctool.org/favicon.ico">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://budgetcalctool.org/tools/emergency-fund-calculator.html">
+<style>
+.bct-ef-hero { background: linear-gradient(135deg, #e67e22 0%, #d35400 100%); color: #fff; padding: 48px 24px; text-align: center; }
+.bct-ef-hero h1 { font-family: var(--bct-font-heading); font-size: 2.2rem; margin-bottom: 8px; }
+.bct-ef-hero p { opacity: 0.9; max-width: 600px; margin: 0 auto; }
+.bct-ef-wizard { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: start; }
+.bct-ef-steps { background: var(--bct-card); border-radius: var(--bct-radius); padding: 32px; box-shadow: var(--bct-shadow); }
+.bct-ef-step { margin-bottom: 24px; }
+.bct-ef-step h4 { font-size: 1rem; margin-bottom: 10px; color: var(--bct-primary); }
+.bct-ef-options { display: flex; flex-wrap: wrap; gap: 8px; }
+.bct-ef-opt { padding: 8px 16px; border-radius: 8px; border: 2px solid var(--bct-border); background: var(--bct-card); cursor: pointer; font-size: 0.9rem; transition: all 0.2s; }
+.bct-ef-opt.selected { border-color: #e67e22; background: #fff3e0; color: #d35400; font-weight: 600; }
+.bct-ef-gauge { background: var(--bct-card); border-radius: var(--bct-radius); padding: 32px; box-shadow: var(--bct-shadow); text-align: center; }
+.bct-ef-gauge canvas { max-width: 100%; }
+.bct-ef-result { margin-top: 24px; }
+.bct-ef-result .big { font-size: 2rem; font-weight: 700; color: var(--bct-primary); }
+.bct-ef-result .small { font-size: 0.9rem; color: var(--bct-muted); margin-top: 4px; }
+.bct-ef-details { background: var(--bct-card); border-radius: var(--bct-radius); padding: 24px; box-shadow: var(--bct-shadow); margin-top: 24px; }
+.bct-ef-details h3 { font-family: var(--bct-font-heading); font-size: 1.2rem; margin-bottom: 16px; }
+.bct-ef-detail-row { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid var(--bct-border); font-size: 0.95rem; }
+.bct-ef-detail-row:last-child { border-bottom: none; }
+.bct-ef-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 20px; }
+.bct-ef-history { background: var(--bct-card); border-radius: var(--bct-radius); padding: 24px; box-shadow: var(--bct-shadow); margin-top: 24px; }
+.bct-ef-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+.bct-ef-table th, .bct-ef-table td { padding: 10px 12px; text-align: left; border-bottom: 1px solid var(--bct-border); }
+.bct-ef-table th { background: var(--bct-bg); font-weight: 600; font-size: 0.8rem; text-transform: uppercase; color: var(--bct-muted); }
+.bct-privacy-note { font-size: 0.85rem; color: var(--bct-muted); margin-top: 16px; font-style: italic; }
+@media (max-width: 768px) {
+  .bct-ef-wizard { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<header class="bct-header">
+  <nav class="bct-nav">
+    <a href="../index.html" class="bct-logo">BudgetCalcTool</a>
+    <button class="bct-mobile-menu-btn" onclick="bctToggleMenu()" aria-label="Menu">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+    <ul class="bct-nav-links" id="mainNav">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="./index.html">Tools</a></li>
+      <li><a href="../blog/index.html">Blog</a></li>
+      <li><a href="../about.html">About</a></li>
+      <li><a href="../contact.html">Contact</a></li>
+      <li><a href="../faq.html">FAQ</a></li>
+    </ul>
+  </nav>
+</header>
+
+<div class="bct-breadcrumb">
+  <a href="../index.html">Home</a> <span>/</span> <a href="./index.html">Tools</a> <span>/</span> Emergency Fund Calculator
+</div>
+
+<div class="bct-ad-slot has-content" data-ad-slot="article_top" data-ad="article_top"></div>
+
+<div class="bct-ef-hero">
+  <h1>Emergency Fund Calculator</h1>
+  <p>How many months of expenses should you stash away? It depends on your life, not a generic rule.</p>
+</div>
+
+<main class="bct-container bct-section">
+  <div class="bct-ef-wizard">
+    <div class="bct-ef-steps">
+      <h2 style="font-family:var(--bct-font-heading);font-size:1.3rem;margin-bottom:24px">Your Situation</h2>
+
+      <div class="bct-ef-step">
+        <h4>Monthly Essential Expenses ($)</h4>
+        <div class="bct-input-group" style="margin-bottom:0">
+          <input type="number" id="efExpenses" placeholder="e.g. 2500" oninput="calcEF()">
+        </div>
+      </div>
+
+      <div class="bct-ef-step">
+        <h4>Job Stability</h4>
+        <div class="bct-ef-options" id="optStability">
+          <span class="bct-ef-opt" data-val="1" onclick="selectOpt(this, 'stability')">Very stable (tenured, gov)</span>
+          <span class="bct-ef-opt selected" data-val="2" onclick="selectOpt(this, 'stability')">Stable (salaried, corporate)</span>
+          <span class="bct-ef-opt" data-val="3" onclick="selectOpt(this, 'stability')">Moderate (contract, freelance)</span>
+          <span class="bct-ef-opt" data-val="4" onclick="selectOpt(this, 'stability')">Unstable (gig work, seasonal)</span>
+        </div>
+      </div>
+
+      <div class="bct-ef-step">
+        <h4>Family Dependents</h4>
+        <div class="bct-ef-options" id="optDependents">
+          <span class="bct-ef-opt selected" data-val="1" onclick="selectOpt(this, 'dependents')">Just me</span>
+          <span class="bct-ef-opt" data-val="2" onclick="selectOpt(this, 'dependents')">Partner, no kids</span>
+          <span class="bct-ef-opt" data-val="3" onclick="selectOpt(this, 'dependents')">1 child</span>
+          <span class="bct-ef-opt" data-val="4" onclick="selectOpt(this, 'dependents')">2+ children</span>
+        </div>
+      </div>
+
+      <div class="bct-ef-step">
+        <h4>Health Insurance</h4>
+        <div class="bct-ef-options" id="optInsurance">
+          <span class="bct-ef-opt selected" data-val="1" onclick="selectOpt(this, 'insurance')">Employer-provided</span>
+          <span class="bct-ef-opt" data-val="2" onclick="selectOpt(this, 'insurance')">Marketplace / ACA</span>
+          <span class="bct-ef-opt" data-val="3" onclick="selectOpt(this, 'insurance')">None / high deductible</span>
+        </div>
+      </div>
+
+      <div class="bct-ef-step">
+        <h4>Other Income Sources</h4>
+        <div class="bct-ef-options" id="optIncome">
+          <span class="bct-ef-opt" data-val="1" onclick="selectOpt(this, 'income')">Partner's income covers all</span>
+          <span class="bct-ef-opt selected" data-val="2" onclick="selectOpt(this, 'income')">Some side income</span>
+          <span class="bct-ef-opt" data-val="3" onclick="selectOpt(this, 'income')">None — sole earner</span>
+        </div>
+      </div>
+
+      <div class="bct-ef-actions">
+        <button class="bct-btn bct-btn-primary" onclick="saveEF()">Save Calculation</button>
+        <button class="bct-btn bct-btn-outline" onclick="exportEF()">Export Report</button>
+        <button class="bct-btn bct-btn-outline" onclick="resetEF()" style="color:#c0392b;border-color:#c0392b">Reset</button>
+      </div>
+      <p class="bct-privacy-note">All data stays in your browser — we never see it.</p>
+    </div>
+
+    <div class="bct-ef-gauge">
+      <h3 style="font-family:var(--bct-font-heading);font-size:1.2rem;margin-bottom:16px">Recommended Fund</h3>
+      <canvas id="efGauge" width="320" height="200"></canvas>
+      <div class="bct-ef-result">
+        <div class="big" id="efMonths">3 months</div>
+        <div class="small" id="efAmount">$0</div>
+      </div>
+      <div id="efAdvice" style="margin-top:16px;font-size:0.95rem;color:var(--bct-muted);line-height:1.6"></div>
+    </div>
+  </div>
+
+  <div class="bct-ef-details">
+    <h3>Breakdown</h3>
+    <div class="bct-ef-detail-row"><span>Base recommendation</span><span id="efBase">3 months</span></div>
+    <div class="bct-ef-detail-row"><span>Job stability adjustment</span><span id="efJobAdj">+0</span></div>
+    <div class="bct-ef-detail-row"><span>Family adjustment</span><span id="efFamAdj">+0</span></div>
+    <div class="bct-ef-detail-row"><span>Insurance adjustment</span><span id="efInsAdj">+0</span></div>
+    <div class="bct-ef-detail-row"><span>Income backup adjustment</span><span id="efIncAdj">-0</span></div>
+    <div class="bct-ef-detail-row" style="border-top:2px solid var(--bct-border);font-weight:700"><span>Total recommended</span><span id="efTotal">3 months</span></div>
+  </div>
+
+  <div class="bct-ad-slot has-content" data-ad-slot="article_middle" data-ad="article_middle"></div>
+
+  <div class="bct-ef-history">
+    <h3 style="font-family:var(--bct-font-heading);font-size:1.2rem;margin-bottom:16px">Saved Calculations</h3>
+    <div style="overflow-x:auto">
+      <table class="bct-ef-table" id="efHist">
+        <thead><tr><th>Date</th><th>Expenses</th><th>Months</th><th>Target</th><th>Action</th></tr></thead>
+        <tbody id="efHistBody"><tr><td colspan="5" style="color:var(--bct-muted)">No saved calculations yet.</td></tr></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="bct-ad-slot has-content" data-ad-slot="article_bottom" data-ad="article_bottom"></div>
+
+  <section style="margin-top:48px">
+    <h2 style="font-family:var(--bct-font-heading);font-size:1.5rem;margin-bottom:20px">Related Tools</h2>
+    <div class="bct-related">
+      <div class="bct-related-card">
+        <h4>Savings Goal Calculator</h4>
+        <p>Turn your emergency fund target into a monthly savings plan with a deadline.</p>
+        <a href="./savings-goal-calculator.html">Try it →</a>
+      </div>
+      <div class="bct-related-card">
+        <h4>Monthly Budget Calculator</h4>
+        <p>Find your true essential expenses so this calculator uses accurate numbers.</p>
+        <a href="./monthly-budget-calculator.html">Try it →</a>
+      </div>
+      <div class="bct-related-card">
+        <h4>50/30/20 Calculator</h4>
+        <p>Make sure your emergency fund savings fit within your overall budget framework.</p>
+        <a href="./50-30-20-calculator.html">Try it →</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="bct-footer">
+  <div class="bct-footer-grid">
+    <div>
+      <h4>Tools</h4>
+      <a href="./monthly-budget-calculator.html">Budget Calculator</a>
+      <a href="./savings-goal-calculator.html">Savings Goal</a>
+      <a href="./debt-payoff-calculator.html">Debt Payoff</a>
+      <a href="./50-30-20-calculator.html">50/30/20 Rule</a>
+      <a href="./emergency-fund-calculator.html">Emergency Fund</a>
+      <a href="./expense-splitter.html">Expense Splitter</a>
+      <a href="./retirement-savings-calculator.html">Retirement Savings</a>
+    </div>
+    <div>
+      <h4>Blog & Resources</h4>
+      <a href="../blog/index.html">All Articles</a>
+      <a href="../faq.html">FAQ</a>
+    </div>
+    <div>
+      <h4>Legal</h4>
+      <a href="../privacy.html">Privacy Policy</a>
+      <a href="../terms.html">Terms of Use</a>
+      <a href="../disclaimer.html">Disclaimer</a>
+      <a href="../disclosure.html">Ad Disclosure</a>
+    </div>
+    <div>
+      <h4>About / Contact</h4>
+      <a href="../about.html">About Us</a>
+      <a href="../contact.html">Contact</a>
+    </div>
+  </div>
+  <div class="bct-footer-bottom">
+    <p>Not financial advice. For educational purposes only.</p>
+    <p>&copy; 2026 BudgetCalcTool.org. All rights reserved.</p>
+  </div>
+</footer>
+
+<script src="../ads-loader.js"></script>
+<script>
+function bctToggleMenu() {
+  document.getElementById('mainNav').classList.toggle('active');
+}
+
+const EF_LS = 'bct_ef_history';
+let selections = {stability: 2, dependents: 1, insurance: 1, income: 2};
+
+function selectOpt(el, group) {
+  document.querySelectorAll('#opt' + group.charAt(0).toUpperCase() + group.slice(1) + ' .bct-ef-opt').forEach(o => o.classList.remove('selected'));
+  el.classList.add('selected');
+  selections[group] = parseInt(el.dataset.val);
+  calcEF();
+}
+
+function fmt(n) { return '$' + n.toLocaleString('en-US', {maximumFractionDigits: 0}); }
+
+function calcEF() {
+  const expenses = parseFloat(document.getElementById('efExpenses').value) || 0;
+  const base = 3;
+  const jobAdj = (selections.stability - 2) * 1;
+  const famAdj = (selections.dependents - 1) * 0.5;
+  const insAdj = (selections.insurance - 1) * 0.5;
+  const incAdj = (selections.income - 2) * -0.5;
+  const totalMonths = Math.max(1, Math.round(base + jobAdj + famAdj + insAdj + incAdj));
+  const amount = expenses * totalMonths;
+
+  document.getElementById('efMonths').textContent = totalMonths + ' month' + (totalMonths > 1 ? 's' : '');
+  document.getElementById('efAmount').textContent = expenses > 0 ? fmt(amount) : '$0';
+  document.getElementById('efBase').textContent = base + ' months';
+  document.getElementById('efJobAdj').textContent = (jobAdj >= 0 ? '+' : '') + jobAdj;
+  document.getElementById('efFamAdj').textContent = (famAdj >= 0 ? '+' : '') + famAdj;
+  document.getElementById('efInsAdj').textContent = (insAdj >= 0 ? '+' : '') + insAdj;
+  document.getElementById('efIncAdj').textContent = (incAdj >= 0 ? '+' : '') + incAdj;
+  document.getElementById('efTotal').textContent = totalMonths + ' months';
+
+  const advice = document.getElementById('efAdvice');
+  if (expenses <= 0) { advice.textContent = 'Enter your monthly essential expenses to see your personalized recommendation.'; }
+  else if (totalMonths <= 3) { advice.textContent = 'You have a relatively stable profile. A 3-month fund is the minimum, but consider stretching to 6 if you can.'; }
+  else if (totalMonths <= 6) { advice.textContent = 'Most households fall here. Aim to hit this target before investing aggressively or taking on new debt.'; }
+  else { advice.textContent = 'Your profile suggests higher risk. A larger cushion is wise. Build this gradually — even $50/month gets you there.'; }
+
+  drawGauge(totalMonths);
+  saveEFInputs();
+}
+
+function drawGauge(months) {
+  const c = document.getElementById('efGauge');
+  const ctx = c.getContext('2d');
+  const dpr = window.devicePixelRatio || 1;
+  c.width = 320 * dpr; c.height = 200 * dpr;
+  ctx.scale(dpr, dpr);
+  ctx.clearRect(0, 0, 320, 200);
+
+  const cx = 160, cy = 160, r = 120;
+  ctx.beginPath(); ctx.arc(cx, cy, r, Math.PI, 0); ctx.lineWidth = 24; ctx.strokeStyle = '#ecf0f1'; ctx.stroke();
+
+  const maxM = 12;
+  const pct = Math.min(months / maxM, 1);
+  const endAngle = Math.PI + pct * Math.PI;
+  const grad = ctx.createLinearGradient(0, 200, 320, 0);
+  grad.addColorStop(0, '#27AE60'); grad.addColorStop(0.5, '#f1c40f'); grad.addColorStop(1, '#e74c3c');
+  ctx.beginPath(); ctx.arc(cx, cy, r, Math.PI, endAngle); ctx.lineWidth = 24; ctx.strokeStyle = grad; ctx.stroke();
+
+  ctx.fillStyle = '#2C3E50'; ctx.font = 'bold 28px Roboto'; ctx.textAlign = 'center';
+  ctx.fillText(months + 'mo', cx, cy - 20);
+  ctx.fillStyle = '#636E72'; ctx.font = '12px Roboto';
+  ctx.fillText('0mo', 40, cy + 10);
+  ctx.fillText('12mo', 280, cy + 10);
+}
+
+function saveEFInputs() {
+  const obj = {expenses: document.getElementById('efExpenses').value, selections};
+  localStorage.setItem('bct_ef_inputs', JSON.stringify(obj));
+}
+
+function loadEFInputs() {
+  const raw = localStorage.getItem('bct_ef_inputs');
+  if (!raw) return;
+  const obj = JSON.parse(raw);
+  if (obj.expenses !== undefined) document.getElementById('efExpenses').value = obj.expenses;
+  if (obj.selections) {
+    selections = obj.selections;
+    Object.keys(selections).forEach(k => {
+      const container = document.getElementById('opt' + k.charAt(0).toUpperCase() + k.slice(1));
+      if (container) {
+        container.querySelectorAll('.bct-ef-opt').forEach(o => {
+          o.classList.toggle('selected', parseInt(o.dataset.val) === selections[k]);
+        });
+      }
+    });
+  }
+  calcEF();
+}
+
+function saveEF() {
+  const expenses = parseFloat(document.getElementById('efExpenses').value) || 0;
+  if (expenses <= 0) { alert('Enter your monthly expenses first.'); return; }
+  const months = parseInt(document.getElementById('efMonths').textContent);
+  const amount = expenses * months;
+  const hist = JSON.parse(localStorage.getItem(EF_LS) || '[]');
+  hist.unshift({date: new Date().toLocaleDateString(), expenses, months, amount});
+  if (hist.length > 10) hist.pop();
+  localStorage.setItem(EF_LS, JSON.stringify(hist));
+  renderEFHistory();
+}
+
+function renderEFHistory() {
+  const hist = JSON.parse(localStorage.getItem(EF_LS) || '[]');
+  const tbody = document.getElementById('efHistBody');
+  if (hist.length === 0) { tbody.innerHTML = '<tr><td colspan="5" style="color:var(--bct-muted)">No saved calculations yet.</td></tr>'; return; }
+  tbody.innerHTML = hist.map((h, i) => '<tr><td>' + h.date + '</td><td>' + fmt(h.expenses) + '</td><td>' + h.months + 'mo</td><td>' + fmt(h.amount) + '</td><td><button onclick="deleteEF(' + i + ')" style="background:none;border:none;color:#c0392b;cursor:pointer;font-size:0.85rem">Delete</button></td></tr>').join('');
+}
+
+function deleteEF(i) {
+  const hist = JSON.parse(localStorage.getItem(EF_LS) || '[]');
+  hist.splice(i, 1); localStorage.setItem(EF_LS, JSON.stringify(hist)); renderEFHistory();
+}
+
+function exportEF() {
+  const expenses = parseFloat(document.getElementById('efExpenses').value) || 0;
+  const months = parseInt(document.getElementById('efMonths').textContent);
+  const amount = expenses * months;
+  const lines = [
+    'EMERGENCY FUND REPORT — BudgetCalcTool.org',
+    'Generated: ' + new Date().toLocaleString(),
+    '',
+    'Monthly Essential Expenses: ' + fmt(expenses),
+    'Recommended Months: ' + months,
+    'Target Emergency Fund: ' + fmt(amount),
+    '',
+    'Note: This is an estimate for educational purposes only. Not financial advice.'
+  ];
+  const blob = new Blob([lines.join('\n')], {type: 'text/plain'});
+  const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'emergency-fund-report.txt'; a.click();
+}
+
+function resetEF() {
+  document.getElementById('efExpenses').value = '';
+  selections = {stability: 2, dependents: 1, insurance: 1, income: 2};
+  document.querySelectorAll('.bct-ef-opt').forEach(o => o.classList.remove('selected'));
+  document.querySelectorAll('.bct-ef-options').forEach(container => {
+    const first = container.querySelector('.bct-ef-opt');
+    if (first) first.classList.add('selected');
+  });
+  localStorage.removeItem('bct_ef_inputs');
+  calcEF();
+}
+
+window.addEventListener('DOMContentLoaded', () => { loadEFInputs(); renderEFHistory(); });
+</script>
+</body>
+</html>
