@@ -1,0 +1,44 @@
+# budgetcalctool.org
+
+Free online calculators and educational content. Not professional advice.
+
+## Pages
+- Home: https://budgetcalctool.org/
+- Tools: https://budgetcalctool.org/tools/
+- Blog: https://budgetcalctool.org/blog/
+- About: https://budgetcalctool.org/about.html
+- Contact: https://budgetcalctool.org/contact.html
+- FAQ: https://budgetcalctool.org/faq.html
+- Sitemap: https://budgetcalctool.org/sitemap.html
+
+## Tools
+- 50/30/20 Calculator | BudgetCalcTool.org: https://budgetcalctool.org/tools/50-30-20-calculator.html
+- Debt Payoff Calculator | BudgetCalcTool.org: https://budgetcalctool.org/tools/debt-payoff-calculator.html
+- Emergency Fund Calculator | BudgetCalcTool.org: https://budgetcalctool.org/tools/emergency-fund-calculator.html
+- Expense Splitter | BudgetCalcTool.org: https://budgetcalctool.org/tools/expense-splitter.html
+- Monthly Budget Calculator | BudgetCalcTool.org: https://budgetcalctool.org/tools/monthly-budget-calculator.html
+- Retirement Savings Calculator | BudgetCalcTool.org: https://budgetcalctool.org/tools/retirement-savings-calculator.html
+- Savings Goal Calculator | BudgetCalcTool.org: https://budgetcalctool.org/tools/savings-goal-calculator.html
+
+## Articles
+- Colorado Tabor Collapse Budget Reality 2026 (colorado-tabor-collapse-budget-reality-2026) -- I checked my bank account on Friday morning like I always do. Coffee in one hand, phone in the other, the ritual of seeing what survived the week. And there it was: a $62 deposit from the Colorado Dep -- July 23, 2026
+- Denver Budget Climate Adaptation (denver-budget-climate-adaptation) -- Why My Denver Budget Fell Apart in June—And It Wasn't the Housing Market Marcus Thompson I sat down at my kitchen table on the first Sunday of July with my laptop, a cup of coffee, and the sinking fee -- July 06, 2026
+- Tracked Every Dollar 90 Days Found Leak (tracked-every-dollar-90-days-found-leak) -- I am not a natural budgeter. I am a natural spender. Give me a paycheck and I will find a way to convert it into experiences, gadgets, and an unreasonable number of subscriptions I forgot I had. So wh -- July 06, 2026
+- The 200 Grocery Challenge I Gave My Family (the-200-grocery-challenge-i-gave-my-family) -- The $200 Grocery Challenge I Gave My Family (And How We Actually Did) It started as a joke. Or maybe a threat. I am not sure which. Rachel and I were sitting at the kitchen table in our Berkeley bunga -- July 01, 2026
+- Pick Up The Phone Your Landlord Is About To Raise Your Rent (pick-up-the-phone-your-landlord-is-about-to-raise-your-rent) -- Pick Up the Phone. Your Landlord Is About to Raise Your Rent. Pick up the phone. Yes, right now. I know you don't want to. I know the idea of calling your landlord makes your stomach do that thing whe -- June 24, 2026
+- How to Audit Your Subscriptions (Without Losing Your Mind) (how-to-audit-your-subscriptions-without-losing-your-mind) -- I was paying for three streaming services, a meditation app I never opened, a meal kit service that sent me two boxes before I canceled, and a gym membership I -- June 18, 2026
+- Why You're Still Paying Off Last Year's Holidays (And How to Stop) (why-youre-still-paying-off-last-years-holidays-and-how-to) -- It's June. Your holiday decorations are long gone. But your credit card balance might still be carrying the ghost of Christmas past. -- June 18, 2026
+- The Sleep-at-Night Number: Why Your Real Emergency Fund Goal Isn't 6 Months (the-sleep-at-night-number-why-your-real-emergency-fund-goal) -- Let me tell you a fable. -- June 17, 2026
+- Childcare in Denver: How Families Are Surviving the $1,500/Month Reality (childcare-in-denver-how-families-are-surviving-the) -- My client Jenna called me crying last month. She and her husband both work full-time. They have a 2‑year‑old and a 4‑year‑old. Their daycare bill? $2,800 a mont -- June 16, 2026
+- How to Negotiate Your Rent in Denver (Yes, You Can) (how-to-negotiate-your-rent-in-denver-yes-you-can) -- “Wait, you can negotiate rent?” That's what my client Elena said when I suggested she ask her landlord for a lower renewal rate. She'd been renting the same one -- June 16, 2026
+- The Hidden Cost of Car Ownership in Denver (It's More Than You Think) (the-hidden-cost-of-car-ownership-in-denver-its-more-than) -- **January 15, 2026** – My car needed new tires. $780. I wasn't ready. My emergency fund took a hit. -- June 16, 2026
+- The Psychology of Impulse Spending in a High-Cost City (the-psychology-of-impulse-spending-in-a-high-cost-city) -- I bought a $7 coffee yesterday. I didn't need it. I wasn't even thirsty. I just felt tired and frustrated and wanted one nice thing. -- June 16, 2026
+- From Debt to $10K Saved: A Denver Teacher's Real Budget Journey (from-debt-to-10k-saved-a-denver-teachers-real-budget-journey) -- Sarah teaches third grade in Aurora. In 2024, she had $8,000 in credit card debt and $400 in savings. In May 2026, she hit $10,000 in savings. This is how. -- June 15, 2026
+- I Helped 2,400 Families Budget. Here's What Denver's 4.2% Inflation Actually Looks Like (i-helped-2400-families-budget-heres-what-denvers-42) -- I've been a financial counselor in Denver for ten years. I've helped around 2,400 families with their budgets. And I've never seen a gap this wide between wage -- June 15, 2026
+- Retirement Savings When You're Barely Covering Rent in Denver (retirement-savings-when-youre-barely-covering-rent-in-denver) -- You're 35. You rent in Capitol Hill. You have $2,400 in a 401(k). Retirement feels like a joke. Let's fix that. -- June 15, 2026
+- The Complete Guide to Budgeting on Colorado's New $19.29 Minimum Wage (the-complete-guide-to-budgeting-on-colorados-new-1929) -- This is a step-by-step guide to living on $19.29 an hour in Denver. No fluff. No judgment. Just math. -- June 15, 2026
+- Why Your 'National Average' Budget Advice Is Lying to You (why-your-national-average-budget-advice-is-lying-to-you) -- National budget advice says housing should be 30% of your income. In Denver, that's a fantasy. Let me show you the real numbers. -- June 15, 2026
+- From $800 Refunds to $62: What Colorado's TABOR Collapse Means for Your Savings (from-800-refunds-to-62-what-colorados-tabor-collapse-means) -- In 2023, Colorado sent everyone $800. In 2024, it was up to $571. In 2026? $62 if you're lucky. This is what happens when you build a budget around windfalls. -- June 14, 2026
+- How I Budget for a Family of Four in a 4.2% Inflation City (how-i-budget-for-a-family-of-four-in-a-42-inflation-city) -- It's Sunday night. The kids are asleep. I'm staring at a spreadsheet and a $4,200 monthly nut that used to be $3,800. -- June 14, 2026
+- Should You Move to Colorado Springs to Save Money? (should-you-move-to-colorado-springs-to-save-money) -- “If you moved 70 miles south, your rent would drop by $116 a month. But your commute would add 15 hours a week. Is it worth it?” -- June 14, 2026
+- Why Your Denver Grocery Budget Feels Broken (And It Is) (why-your-denver-grocery-budget-feels-broken-and-it-is) -- Denver's inflation rate is 4.2% — a full point above the national average. Your grocery bill isn't lying to you. -- June 13, 2026
